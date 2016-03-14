@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Just notes",
   "scripts": {
-    "start": "meteor --settings private/dev_settings.json",
+    "dev": "meteor --settings private/dev_settings.json",
     "deploy": "meteor deploy www.logd.co --settings private/prod_settings.json"
   },
   "keywords": [],

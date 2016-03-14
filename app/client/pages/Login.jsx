@@ -3,10 +3,21 @@ import {AppHeader} from '../layout/AppHeader.jsx'
 
 export const Login = (props) => {
 
+  function loginWithGoogle(){
+    Meteor.loginWithGoogle({
+      requestPermissions: ['email']
+    },  function(err) {
+        if (err) {
+         console.log('error: ' + err);
+         // throw new Meteor.Error(Accounts.LoginCancelledError.numericError, 'Error');
+      }
+   })
+    // AppLib.accounts.loginWithGoogle()
+  }
+  
+
   const
 
-  loginWithGoogle = () => AppLib.accounts.loginWithGoogle()
-  ,
   loginWithPassword = () => {
     return Meteor.settings.public.loginWithPassword? <LoginWithPassword /> : null;
   }
@@ -19,7 +30,7 @@ export const Login = (props) => {
           <AppHeader />
           <main className="main-content layout-centered centered">
             <h2>Please Sign In</h2>
-            <p><button onClick={this.loginWithGoogle} className="btn btn-google btn-with-icon"><i className="fa fa-google-plus"></i>{googleLoginLabel}</button>
+            <p><button onClick={loginWithGoogle} className="btn btn-google btn-with-icon"><i className="fa fa-google-plus"></i>{googleLoginLabel}</button>
             </p>
             {loginWithPassword()}
             <div className="centered secondary-text footer-text login-footer">
@@ -29,6 +40,15 @@ export const Login = (props) => {
         </div>
 
 }
+
+// {
+//       requestPermissions: ['email']
+//     }, (err) => {
+//       if (err) {
+//          console.log('error: ' + err.reason);
+//          throw new Meteor.Error(Accounts.LoginCancelledError.numericError, 'Error');
+//       }
+//    }
 
  // <FooterLinks />
 // List.propTypes = {

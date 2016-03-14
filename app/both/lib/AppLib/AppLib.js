@@ -64,14 +64,14 @@ AppLib.config = {
 
 AppLib.accounts = {
   loginWithGoogle(){
-    Meteor.loginWithGoogle({
-      requestPermissions: ['email']
-    }, (err) => {
-      if (err) {
-         console.log('error: ' + err.reason);
-         throw new Meteor.Error(Accounts.LoginCancelledError.numericError, 'Error');
-      }
-   });
+   //  Meteor.loginWithGoogle({
+   //    requestPermissions: ['email']
+   //  }, (err) => {
+   //    if (err) {
+   //       console.log('error: ' + err.reason);
+   //       throw new Meteor.Error(Accounts.LoginCancelledError.numericError, 'Error');
+   //    }
+   // });
   },
   setProfileMainEmail(user, options){
     if (options.email) {
