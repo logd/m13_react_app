@@ -13,7 +13,7 @@ import {PageTitle} from '../content/PageTitle.jsx'
 import {OptionsMenu} from '../menus/OptionsMenu.jsx'
 import {IconBtn} from '../forms/buttons/IconBtn.jsx'
 import {Loading} from '../utility/Loading.jsx'
-// import {SingleFieldSubmit} from '../forms/SingleFieldSubmit.jsx'
+import {SingleFieldSubmit} from '../forms/SingleFieldSubmit.jsx'
 
 
 export default class Homepage extends React.Component {
