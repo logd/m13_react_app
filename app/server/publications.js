@@ -19,11 +19,11 @@ Meteor.publish('myNotes', function(limit) {
   return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }, {limit: limit }); 
 });
 
-// Meteor.publish('myCurrentNote', function(id) {
-//   check(id, String);
+Meteor.publish('myCurrentNote', function(id) {
+  check(id, String);
 
-//   return Notes.find({ _id: id, ownerId: this.userId }, { fields: noteDetailFields }); 
-// });
+  return Notes.find({ _id: id, ownerId: this.userId }, { fields: noteDetailFields }); 
+});
 
 Meteor.publish("userData", function () {
   if (this.userId) {

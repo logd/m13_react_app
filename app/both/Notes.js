@@ -29,10 +29,10 @@ export const AstroNote = Astro.Class({
     },
     updatedAt: {
       type: 'date'
-    }
-  },
-  ownerId: {
-    type: 'string'
+    },
+    ownerId: {
+      type: 'string'
+    },
   },
   events: {
     beforeInsert() {
@@ -63,7 +63,7 @@ Meteor.methods({
 
     note.throwValidationException();
   },
-  
+
   // '/note/delete': function(id) {
   //   Notes.remove({_id: id});
   // }

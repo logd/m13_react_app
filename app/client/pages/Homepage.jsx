@@ -4,7 +4,7 @@ import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 
 //DATA
-import {Notes, AstroNote} from '../../both/Notes'
+import {Notes, AstroNote as Note} from '../../both/Notes'
 
 //COMPONENTS
 import {AppHeader} from '../layout/AppHeader.jsx'
@@ -23,7 +23,7 @@ export default class Homepage extends React.Component {
       showNewNoteForm: false,
       itemsDisplayed: this.props.itemsDefaultQty,
       totalItemCount: null
-     }
+    }
 
     autoBind(this)
   }
@@ -82,10 +82,13 @@ export default class Homepage extends React.Component {
     //prevent newly created item from displaying before redirect
     this.setState({ itemsDisplayed: AppLib.lists.lockItemCount(this.state.totalItemCount, this.state.itemsDisplayed) });
 
-    this.note.set({
+    const note = new Note()
+
+    note.set({
       title: inputValue
     });
-    Meteor.call('/note/create', this.note, (err, result) => {
+
+    Meteor.call('/note/create', note, (err, result) => {
       if (!err) {
         if (Meteor.isClient) {
          Session.set("newNote", true); 
