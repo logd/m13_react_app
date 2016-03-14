@@ -75,20 +75,14 @@ export default class Homepage extends React.Component {
     this.setState({ showNewNoteForm: false });
   }
 
-  handleCreateNote(inputValue) {
+  handleCreateNote(title) {
 
-    if (AppLib.str.isEmpty(inputValue)) { return; };
+    if (AppLib.str.isEmpty(title)) { return; };
   
     //prevent newly created item from displaying before redirect
     this.setState({ itemsDisplayed: AppLib.lists.lockItemCount(this.state.totalItemCount, this.state.itemsDisplayed) });
 
-    const note = new Note()
-
-    note.set({
-      title: inputValue
-    });
-
-    Meteor.call('/note/create', note, (err, result) => {
+    Meteor.call('/note/create', title, (err, result) => {
       if (!err) {
         if (Meteor.isClient) {
          Session.set("newNote", true); 

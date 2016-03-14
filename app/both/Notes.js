@@ -43,8 +43,11 @@ export const AstroNote = Astro.Class({
 
 Meteor.methods({
 
-	'/note/create': function(note) { 
+	'/note/create': function(title) { 
+		const note = new AstroNote()
+
     note.set({
+      title: title,
       ownerId: Meteor.userId()
     });
 
