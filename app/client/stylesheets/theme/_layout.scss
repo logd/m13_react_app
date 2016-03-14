@@ -1,0 +1,158 @@
+// --------------------------------
+// BASE LAYOUT
+// --------------------------------
+
+html,body {
+  box-sizing: border-box;
+  height:100%;
+}
+
+*, *:before, *:after { box-sizing: inherit; }
+
+body {
+  // overflow:hidden;
+  min-height: 100vh;
+  padding:0;
+  margin:0;
+}
+#react-root {
+  min-height: 100vh;
+}
+
+// --------------------------------
+// APP CONTAINER
+// --------------------------------
+.app-container {
+  //Layout
+  display: flex;
+  flex-direction: column;
+   min-height: 100vh;
+  margin: 0 auto;
+  max-width: $app-max-width;
+  padding:0;
+  // margin:0;
+  overflow: auto;
+}
+
+// --------------------------------
+// APP HEADER
+// --------------------------------
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left:0;
+  right: 0;
+  z-index:$z-index-appheader;
+  height:$app-header-height;
+  padding: 0 $app-header-left-right-padding;
+
+  //child layout
+  display: flex;
+  flex-flow: row nowrap;
+  align-items:center;
+
+  //Styling
+  background-color: $primary-color-dark;
+  
+  .header-center {
+    flex: 1 0 auto;
+
+    .page-title {
+      color:$primary-text-inverted;
+      @include truncate_text();
+      padding-left: 1em;
+      padding-right: 1em;
+      text-align: center;
+    }
+  }
+}
+
+body.scrolling {
+   .app-header {
+    @include drop_shadow_bottom();
+  }
+}
+
+// --------------------------------
+// MAIN CONTENT
+// --------------------------------
+
+.main-content {
+  flex: 1;
+  padding:$app-header-height $app-left-right-padding 0 $app-left-right-padding;
+  margin: 0;
+  // height:100%; 
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content-editing {
+  flex: 1;
+  margin: 0;
+  // height:100%; 
+  display: flex;
+  flex-direction: column;
+
+    textarea {
+      font-size: $base-font-size;
+      margin:0;
+      padding-top:$main-content-editing-padding-top;
+      padding-left: $app-left-right-padding;
+      padding-right: $app-left-right-padding;
+      padding-bottom: 0;
+      outline: none;
+      resize: none;
+      border:none;
+    }
+    .form-controls {
+      border-top: 1px solid $color-gray-7;
+      padding-top: $form-controls-padding;
+      // margin: 0  $app-left-right-padding;
+    }
+}
+
+// --------------------------------
+// APP FOOTER
+// --------------------------------
+
+.app-footer {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  padding:1em;
+}
+
+
+// --------------------------------
+// LAYOUT HELPERS
+// --------------------------------
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-main-content {
+    flex: 1; 
+}
+
+.flex-column-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+// .flex-main-content {
+//     flex: 1; 
+// }
+
+.layout-centered {
+  margin: 0 auto;
+  max-width: $centered-block-max-width;
+   // & > h1 {
+   //  text-align: center;
+   //  width: 100%;
+   // }
+}
+
+

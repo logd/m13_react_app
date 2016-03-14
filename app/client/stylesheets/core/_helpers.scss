@@ -1,0 +1,39 @@
+//LAYOUT
+.full-height {
+	height: 100%;
+}
+.block-padding {
+	padding: .5em;
+}
+
+.centered {
+	text-align: center;
+}
+
+.mask {
+	// display:none;
+
+	// &.active {
+	display: block;
+	position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: $z-index-mask;
+
+	// }
+ 
+}
+
+// src: https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/
+.momentum-scrolling {
+  overflow-y: scroll; // has to be scroll, not auto
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (min-width: $tablet-break-point){
+	.momentum-scrolling {
+  overflow-y: auto; // remove scrollbar placeholder for larger viewports
+  }
+}

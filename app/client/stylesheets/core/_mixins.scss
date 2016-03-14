@@ -1,0 +1,15 @@
+// TEXT
+// _____________________________
+@mixin truncate_text($max: 100%) {
+  // display: inline-block;
+  max-width: $max;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+//LISTS
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}

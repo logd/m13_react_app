@@ -25,3 +25,6 @@ jagi:astronomy
 jagi:astronomy-validators
 msavin:mongol
 react-meteor-data
+fourseven:scss
+accounts-google
+accounts-password
