@@ -95,7 +95,20 @@ export default class Homepage extends React.Component {
         console.log('there was an error: ' + err.reason);
       };
     });
-  } 
+  }
+
+  handleDeleteNote(note) {
+    const confirmDelete = confirm("Really delete '" + note.title + "'?")
+
+    if(confirmDelete){
+      Meteor.call('/note/delete',note._id, function(err, result) {
+        if (err) {
+          console.log('there was an error: ' + err.reason)
+        }
+      })
+    }
+  }
+
   showUserNav(){
     if (this.data.subsReady) {
       return <OptionsMenu userName={this.data.currentUser.profile.fullName} />

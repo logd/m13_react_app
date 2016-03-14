@@ -67,9 +67,13 @@ Meteor.methods({
     note.throwValidationException();
   },
 
-  // '/note/delete': function(id) {
-  //   Notes.remove({_id: id});
-  // }
+  '/note/delete': function(id) {
+  	// console.log("note owner: " + note.ownerId, "user id: " + Meteor.userId())
+
+  	// if (note.ownerId === Meteor.userId()){
+  		Notes.remove({_id: id});
+  	// }
+  }
 });
 
 // Meteor.methods({

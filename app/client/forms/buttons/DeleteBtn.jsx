@@ -5,9 +5,9 @@ export const DeleteBtn = (props) => {
 
  const handleDelete = () => {
 		props.handleDelete(props.item);
-	}
+ }
 
- return  <IconBtn handleClick={handleDelete} title={props.deleteMsg} icon="delete" />
+ return <IconBtn handleClick={handleDelete} title={props.deleteMsg} icon="delete" />
 }
 
 DeleteBtn.propTypes = {
