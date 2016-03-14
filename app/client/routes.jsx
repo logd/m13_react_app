@@ -10,6 +10,7 @@ import {MainLayout} from './layout/MainLayout.jsx'
 
 //PAGES
 import Homepage from './pages/Homepage.jsx'
+import NoteDetail from './pages/NoteDetail.jsx'
 import {Login} from './pages/Login.jsx'
 // import NotFound from './pages/NotFound.jsx'
 
@@ -96,14 +97,14 @@ restrictedRoutes.route('/', {
   }
 })
 
-// restrictedRoutes.route('/notes/:_id', {
-//   name: 'noteDetail',
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <NoteDetail />
-//     })
-//   }
-// })
+restrictedRoutes.route('/notes/:_id', {
+  name: 'noteDetail',
+  action() {
+    mount(MainLayout, {
+      content: () => <NoteDetail />
+    })
+  }
+})
 
 
 // ------------------------

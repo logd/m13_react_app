@@ -14,6 +14,7 @@ import {OptionsMenu} from '../menus/OptionsMenu.jsx'
 import {IconBtn} from '../forms/buttons/IconBtn.jsx'
 import {Loading} from '../utility/Loading.jsx'
 import {SingleFieldSubmit} from '../forms/SingleFieldSubmit.jsx'
+import {List} from '../lists/List.jsx'
 
 
 export default class Homepage extends React.Component {
@@ -113,29 +114,47 @@ export default class Homepage extends React.Component {
   loadMoreItems(){
     this.setState({ itemsDisplayed: this.state.itemsDisplayed + this.props.loadIncrement });
   } 
-  noItems(){
-  	const msg = "You don't have any notes :-/"
-    return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
-  } 
-  setMainContent(){
+  // noItems(){
+  // 	const msg = "You don't have any notes :-/"
+  //   return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
+  // } 
+  // setMainContent(){
+
+  //    const noNotesMsg = "You currently don't have any notes :-/"
    
-    if(this.data.subsReady){
-      if(this.data.collection.length === 0){
-        return this.noItems();
-      } else {
-      	return <LinkList linkTo="noteDetail" collection={this.data.collection} itemsDisplayed={this.state.itemsDisplayed} totalItems={this.state.totalItemCount} deleteItem={true} loadMoreItems={this.loadMoreItems}  />;
-      };
-    } else {
-    	return <Loading />
-    }
+  //   if(this.data.subsReady){
+  //     if(this.data.collection.length === 0){
+  //       return this.noItems();
+  //     } else {
+  //     	return <List
+  //       items={this.data.collection}
+  //       deleteItem={true}
+  //       handleDeleteItem={this.handleDeleteNote}
+  //       deleteMsg="Delete this note?"
+  //       noItemsMsg={noNotesMsg}
+  //      />
+  //     };
+  //   } else {
+  //   	return <Loading />
+  //   }
+  // }
+  showNotesList(){
+    const noNotesMsg = "You currently don't have any notes :-/"
+ 
+    return this.data.subsReady?
+      <List
+        items={this.data.collection}
+        deleteItem={true}
+        handleDeleteItem={this.handleDeleteNote}
+        deleteMsg="Delete this note?"
+        noItemsMsg={noNotesMsg}
+       />
+    :
+      <Loading />  
   }
 
-  render() {
 
-  	// console.log("notes sub: "+ this.data.notesSub)
-    // headerRight={this.showUserNav()}
-   //     handleCreate={this.handleCreateNote}
-  // pageTitle={this.setNotesListTitle()}
+  render() {
 
     return (
       <div className="app-container">
@@ -145,15 +164,17 @@ export default class Homepage extends React.Component {
           headerRight={this.showUserNav()}
         />
 
-        <div className="main-content">
-         {this.setMainContent()}
-        </div>
-         <AppFooter />
+         <div className="main-content">
+         {this.showNotesList()}
+        </div> 
       </div>
     )
   }
 }
 reactMixin(Homepage.prototype, ReactMeteorData)
+
+// {this.showNotesList()}
+// <AppFooter />
 
 // Homepage.propTypes = { 
 //   inputValue: React.PropTypes.string
