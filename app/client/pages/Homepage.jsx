@@ -4,7 +4,7 @@ import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 
 //DATA
-import {Notes} from '../../both/Notes'
+import {Notes, AstroNote} from '../../both/Notes'
 
 //COMPONENTS
 import {AppHeader} from '../layout/AppHeader.jsx'
@@ -27,30 +27,26 @@ export default class Homepage extends React.Component {
     autoBind(this)
   }
 
-  componentWillMount() {
-    if (Meteor.isClient) {
-      this.setState({
-        totalItemCount: Counts.get('note_count')
-      });
-    }
-  }
+  // componentWillMount() {
+  //   if (Meteor.isClient) {
+  //     this.setState({
+  //       totalItemCount: Counts.get('note_count')
+  //     });
+  //   }
+  // }
 
   getMeteorData() {
     let currentUser;
-    // Meteor.subscribe("myNotes", this.state.itemsDisplayed),
 
     const
-      subscriptions = [
-        
-        Meteor.subscribe("userData")
-      ],
-      subsReady = _.every(subscriptions, (sub) => sub.ready())
+	    userDataSub = Meteor.subscribe("userData"),
+	    myNotesSub = Meteor.subscribe("myNotes", this.state.itemsDisplayed),
+	    subsReady = userDataSub.ready() &&  myNotesSub.ready() 
     ;
 
-    if (subsReady) { 
-    	// console.log("subs ready: " + subsReady)
+    if (userDataSub.ready()) { 
     	currentUser = Meteor.user()
-    };
+    };    
       
     return {
       subsReady: subsReady,
@@ -138,6 +134,8 @@ export default class Homepage extends React.Component {
   }
 
   render() {
+
+  	// console.log("notes sub: "+ this.data.notesSub)
   	
     // headerRight={this.showUserNav()}
 
