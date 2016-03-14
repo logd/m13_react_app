@@ -19,3 +19,9 @@ autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 standard-minifier-css
 standard-minifier-js
+kadira:flow-router
+kadira:react-layout
+jagi:astronomy
+jagi:astronomy-validators
+msavin:mongol
+react-meteor-data
