@@ -10,6 +10,7 @@ import {Notes, AstroNote} from '../../both/Notes'
 import {AppHeader} from '../layout/AppHeader.jsx'
 import {AppFooter} from '../layout/AppFooter.jsx'
 import {PageTitle} from '../content/PageTitle.jsx'
+import {OptionsMenu} from '../menus/OptionsMenu.jsx'
 import {IconBtn} from '../forms/buttons/IconBtn.jsx'
 import {Loading} from '../utility/Loading.jsx'
 // import {SingleFieldSubmit} from '../forms/SingleFieldSubmit.jsx'
@@ -97,13 +98,13 @@ export default class Homepage extends React.Component {
       };
     });
   } 
-  // showUserNav(){
-  //   if (this.data.subsReady) {
-  //     return <OptionsMenu userName={this.data.currentUser.profile.fullName} />;
-  //   } else {
-  //     return null;
-  //   };
-  // } 
+  showUserNav(){
+    if (this.data.subsReady) {
+      return <OptionsMenu userName={this.data.currentUser.profile.fullName} />
+    } else {
+      return null
+    }
+  } 
   setNotesListTitle(){
     let noteTitle, firstName;
     if (this.data.subsReady && this.data.currentUser){
@@ -130,22 +131,21 @@ export default class Homepage extends React.Component {
     } else {
     	return <Loading />
     }
-    // return mainContent;
   }
 
   render() {
 
   	// console.log("notes sub: "+ this.data.notesSub)
-  	
     // headerRight={this.showUserNav()}
+   //     handleCreate={this.handleCreateNote}
+  // pageTitle={this.setNotesListTitle()}
 
     return (
       <div className="app-container">
         <AppHeader
           headerLeft={this.showNewNoteBtn()}
           headerCenter={this.showNewNoteForm()}
-          handleCreate={this.handleCreateNote}
-          pageTitle={this.setNotesListTitle()}
+          headerRight={this.showUserNav()}
         />
 
         <div className="main-content">
