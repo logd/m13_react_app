@@ -11,9 +11,6 @@
 }
 
 .mask {
-	// display:none;
-
-	// &.active {
 	display: block;
 	position: fixed;
   left: 0;
@@ -21,8 +18,6 @@
   bottom: 0;
   top: 0;
   z-index: $z-index-mask;
-
-	// }
  
 }
 

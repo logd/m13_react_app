@@ -1,7 +1,5 @@
 // TEXT
-// _____________________________
 @mixin truncate_text($max: 100%) {
-  // display: inline-block;
   max-width: $max;
   text-overflow: ellipsis;
   overflow: hidden;
