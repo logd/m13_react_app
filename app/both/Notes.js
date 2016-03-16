@@ -1,7 +1,6 @@
 import {Mongo} from 'meteor/mongo'
 import {Astro} from 'meteor/jagi:astronomy'
 
-
 export const Notes = new Mongo.Collection('notes')
 
 export const AstroNote = Astro.Class({
@@ -44,64 +43,31 @@ export const AstroNote = Astro.Class({
 
 Meteor.methods({
 
-	'/note/create': function(title) { 
+	'/note/create': (title) => { 
 		const note = new AstroNote()
-
     note.set({
       title: title,
       ownerId: Meteor.userId()
-    });
+    })
 
     if (note.validate()) {
-      note.save();
-      return note;
-    };
-    note.throwValidationException();
+      note.save()
+      return note
+    }
+    note.throwValidationException()
   },
 
-  '/note/save': function(note) { 
+  '/note/save': (note) => { 
     if (note.validate()) {
-      note.save();
-      return note;
-    };
-
-    note.throwValidationException();
+      note.save()
+      return note
+    }
+    note.throwValidationException()
   },
 
-  '/note/delete': function(id) {
-  	// console.log("note owner: " + note.ownerId, "user id: " + Meteor.userId())
+  '/note/delete': (id) => Notes.remove({_id: id})
 
-  	// if (note.ownerId === Meteor.userId()){
-  		Notes.remove({_id: id});
-  	// }
-  }
-});
-
-// Meteor.methods({
-
-//   '/note/create': function(note) { 
-//     note.set({
-//       ownerId: Meteor.userId()
-//     });
-
-//     if (note.validate()) {
-//       note.save();
-//       return note;
-//     };
-//     note.throwValidationException();
-//   },
-
-//   '/note/save': function(note) {
-
-//     if (note.validate()) {
-//       note.save();
-//       return note;
-//     };
-
-//     note.throwValidationException();
-//   }
-
-// });
+})
 
 
 
