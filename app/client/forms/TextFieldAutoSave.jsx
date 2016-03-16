@@ -9,21 +9,20 @@ export default class TextFieldAutoSave extends React.Component {
     this.state = {
       inputValue: this.props.inputValue
     }
-
     autoBind(this)
   }
 
   saveChanges(e){
-    const updatedValue = e.target.value;
-    const saveInterval = 300;
+    const updatedValue = e.target.value
+    const saveInterval = 300
 
     this.setState({inputValue: updatedValue})
 
     this.autoSave = this.autoSave || _.throttle(content => {
-      this.props.handleUpdates(this.props.field, content);
-    }, saveInterval);
+      this.props.handleUpdates(this.props.field, content)
+    }, saveInterval)
 
-    this.autoSave(updatedValue);
+    this.autoSave(updatedValue)
   }
 
   doneEditing(e){
@@ -73,9 +72,9 @@ export default class TextFieldAutoSave extends React.Component {
                               onBlur={this.handleOnBlur}
                             />
                            <input type="submit" style={{display:'none'}} />
-                          </form>
+                        </form>
 
-    return  this.props.multiLine? multiLineForm : singleLineForm ;
+    return this.props.multiLine? multiLineForm : singleLineForm 
 	}
 }
 
