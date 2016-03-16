@@ -54,11 +54,8 @@
     font-size: $btn-dflt-size;
   }
 
-  // width: $btn-dflt-size + .5em;
-  // height:  $btn-dflt-size + .5em;
   margin:0;
   padding: 0;
-  // border-radius:50%;
   text-align: center;
 
   &:focus {
@@ -71,10 +68,7 @@
   border:none;
   color: $color-gray-5;
   font-size: $btn-dflt-size;
-  // width: $btn-dflt-size + .5em;
-  // height:  $btn-dflt-size + .5em;
   margin:0;
-  // border-radius:50%;
   text-align: center;
 
   &:focus {
@@ -95,7 +89,6 @@
 
 .circle-btn {
   border:none;
-  // color: $icon-color;
   width: $btn-dflt-size + .5em;
   height:  $btn-dflt-size + .5em;
   margin:0;

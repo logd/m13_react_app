@@ -1,7 +1,6 @@
 // --------------------------------
 // BASE LAYOUT
 // --------------------------------
-
 html,body {
   box-sizing: border-box;
   height:100%;
@@ -30,14 +29,12 @@ body {
   margin: 0 auto;
   max-width: $app-max-width;
   padding:0;
-  // margin:0;
   overflow: auto;
 }
 
 // --------------------------------
 // APP HEADER
 // --------------------------------
-
 .app-header {
   position: fixed;
   top: 0;
@@ -123,36 +120,4 @@ body.scrolling {
   flex: none;
   padding:1em;
 }
-
-
-// --------------------------------
-// LAYOUT HELPERS
-// --------------------------------
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-.flex-main-content {
-    flex: 1; 
-}
-
-.flex-column-centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-// .flex-main-content {
-//     flex: 1; 
-// }
-
-.layout-centered {
-  margin: 0 auto;
-  max-width: $centered-block-max-width;
-   // & > h1 {
-   //  text-align: center;
-   //  width: 100%;
-   // }
-}
-
 
