@@ -11,12 +11,12 @@ const
    "content": true
   }
 
-Meteor.publish('myNotes', function(limit) {
-   check(limit, Number);
+Meteor.publish('myNotes', function() {
+   // check(limit, Number);
     // Counts.publish(this, 'note_count', Notes.find({ ownerId: this.userId }), { noReady: true });
 
-
-  return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }, {limit: limit }); 
+  return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }); 
+  // return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }, {limit: limit }); 
 });
 
 Meteor.publish('myCurrentNote', function(id) {
