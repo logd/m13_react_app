@@ -2,47 +2,47 @@ import React from 'react'
 import autoBind from 'react-autobind'
 
 export class SingleFieldSubmit extends React.Component {
+
   constructor(props){
     super(props)
     this.state = {
       inputValue: this.props.inputValue,
       autoFocus: this.props.autoFocus
     }
-
     autoBind(this)
   }
 
   updateInputValue(e){
     if(e.target.value.length <= this.props.maxLength){
-      this.setState({inputValue: e.target.value});
+      this.setState({inputValue: e.target.value})
     } else {
-      alert("Sorry, max allowed character count is " + this.props.maxLength);
-    };
+      alert("Sorry, max allowed character count is " + this.props.maxLength)
+    }
   }
 
   handleSubmit(e) {
-    e.preventDefault();
-    this.handleContentInput();
+    e.preventDefault()
+    this.handleContentInput()
   }
 
   handleOnKeyPress(e) {
     // submit via return key for mobile safari
     if ( e.which === 13 ) {
-       e.preventDefault();
-      this.handleContentInput();
-    };
+      e.preventDefault()
+      this.handleContentInput()
+    }
   }
 
   handleContentInput(){
-    this.props.handleInput(this.state.inputValue.trim());
+    this.props.handleInput(this.state.inputValue.trim())
   }
 
   handleOnBlur(){
     if (this.props.saveOnBlur) {
-      this.handleContentInput();
+      this.handleContentInput()
     } else {
-      this.props.handleOnBlur();
-    };
+      this.props.handleOnBlur()
+    }
   }
 
   render() {
@@ -59,7 +59,6 @@ export class SingleFieldSubmit extends React.Component {
         />
          <input type="submit" style={{display:'none'}} />
       </form>
-
   }
 }
 
