@@ -29,7 +29,7 @@ export default class Homepage extends React.Component {
   }
 
   getMeteorData() {
-    let currentUser;
+    let currentUser
 
     const
 	    userDataSub = Meteor.subscribe("userData"),
@@ -81,14 +81,14 @@ export default class Homepage extends React.Component {
     Meteor.call('/note/create', title, (err, result) => {
       if (!err) {
         if (Meteor.isClient) {
-         Session.set("newNote", true); 
+         Session.set("newNote", true) 
         }
-        FlowRouter.go("noteDetail", {_id: result._id});  
+        FlowRouter.go("noteDetail", {_id: result._id})  
       } else {
-        note.catchValidationException(err);
-        console.log('there was an error: ' + err.reason);
-      };
-    });
+        note.catchValidationException(err)
+        console.log('there was an error: ' + err.reason)
+      }
+    })
   }
 
   handleDeleteNote(note) {
@@ -122,8 +122,6 @@ export default class Homepage extends React.Component {
 
     return noteTitle
   }
-
-
 
   showNotesList(){
     const noNotesMsg = "You currently don't have any notes :-/"
@@ -159,15 +157,3 @@ export default class Homepage extends React.Component {
   }
 }
 reactMixin(Homepage.prototype, ReactMeteorData)
-
-// Homepage.propTypes = { 
-//   inputValue: React.PropTypes.string
-// }
-// loadMoreItems(){
-//   this.setState({ itemsDisplayed: this.state.itemsDisplayed + this.props.loadIncrement });
-// } 
-
-// Homepage.defaultProps = { 
-//   loadIncrement: 10,
-//   itemsDefaultQty: 20
-// }
