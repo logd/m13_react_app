@@ -3,21 +3,24 @@ import React from 'react'
 export const LoginWithPassword = (props) => {
 
   const loginWithPassword = (e) => {
-    e.preventDefault();
-    var email = $('#email').val();
-    var password = $('#password').val();
+    e.preventDefault()
     
-    Meteor.loginWithPassword(email, password, function(error) {
+    const
+      email = $('#email').val(),
+      password = $('#password').val()
+    
+    Meteor.loginWithPassword(email, password, (error) => {
       if (error) {
-        sAlert.error(error.reason, {effect: 'stackslide', position: 'top'});
+        console.log("login error: " + error.reason)
+        sAlert.error(error.reason, {effect: 'stackslide', position: 'top'})
       } else {
-        FlowRouter.go('/');
+        FlowRouter.go('homepage')
       }
-    });
+    })
   }
 
   return  (
-    <form onSubmit={this.loginWithPassword} id="login-form">
+    <form onSubmit={loginWithPassword} id="login-form">
       <div className="form-group">
        <label htmlFor="email">Email:</label>
        <input type="email" id="email" name="email" className="form-control"/>
