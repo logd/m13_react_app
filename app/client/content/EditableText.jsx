@@ -5,7 +5,6 @@ import TextFieldAutoSave from '../forms/TextFieldAutoSave.jsx'
 export class EditableText extends React.Component {
 
   constructor(props) {
-    // If you want to use this.props in the constructor, you need to pass props to super. https://discuss.reactjs.org/t/should-we-include-the-props-parameter-to-class-constructors-when-declaring-components-using-es6-classes/2781 
     super(props)
     this.state = {
       editMode: this.props.editMode
@@ -14,11 +13,11 @@ export class EditableText extends React.Component {
   }
   
   setEditMode(){
-    this.setState({ editMode: true });
+    this.setState({ editMode: true })
   }
 
   doneEditing(){
-     this.setState({ editMode: false });
+     this.setState({ editMode: false })
   }
 
   showField(){
