@@ -49,7 +49,6 @@ Meteor.methods({
       title: title,
       ownerId: Meteor.userId()
     })
-
     if (note.validate()) {
       note.save()
       return note
