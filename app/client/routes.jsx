@@ -12,6 +12,7 @@ import {MainLayout} from './layout/MainLayout.jsx'
 import Homepage from './pages/Homepage.jsx'
 import NoteDetail from './pages/NoteDetail.jsx'
 import {Login} from './pages/Login.jsx'
+import {Signup} from './pages/Signup.jsx'
 // import NotFound from './pages/NotFound.jsx'
 
 
@@ -64,21 +65,21 @@ FlowRouter.route('/logout', {
   }
 })
 
-// FlowRouter.route('/signup', {
-//   name: 'register',
-//    triggersEnter: [function (){
-//       if (Meteor.userId()) {
-//         FlowRouter.go('home');
-//         Alert.info("Please sign out before signing up.", {effect: 'stackslide', position: 'top', timeout: 2500,})
-//       }
-//     }
-//   ],
-//   action: function() {
-//     ReactLayout.render(MainLayout, {
-//       content:  <Register />
-//     })
-//   }
-// })
+FlowRouter.route('/signup', {
+  name: 'signup',
+   triggersEnter: [function (){
+      if (Meteor.userId()) {
+        FlowRouter.go('home');
+        Alert.info("Please sign out before signing up.", {effect: 'stackslide', position: 'top', timeout: 2500,})
+      }
+    }
+  ],
+  action() {
+    mount(MainLayout, {
+      content: () => <Signup />
+    })
+  }
+})
 
 // ------------------------
 // RESTRICTED Routes

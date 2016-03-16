@@ -1,5 +1,6 @@
 import React from 'react'
 import {AppHeader} from '../layout/AppHeader.jsx'
+import {LoginWithPassword} from '../forms/LoginWithPassword.jsx'
 
 export const Login = (props) => {
 

@@ -28,3 +28,4 @@ accounts-password
 service-configuration
 tmeasday:publish-counts
 jparker:gravatar
+idorecall:email-normalize
