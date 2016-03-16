@@ -29,20 +29,15 @@ export default class Homepage extends React.Component {
   }
 
   getMeteorData() {
-    let currentUser
-
+ 
     const
 	    userDataSub = Meteor.subscribe("userData"),
 	    myNotesSub = Meteor.subscribe("myNotes"),
 	    subsReady = userDataSub.ready() &&  myNotesSub.ready() 
-
-    if (userDataSub.ready()) { 
-    	currentUser = Meteor.user()
-    }
-      
+ 
     return {
       subsReady: subsReady,
-      currentUser: currentUser,
+      currentUser: Meteor.user() || null,
       collection: Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
     }
   }
@@ -103,14 +98,6 @@ export default class Homepage extends React.Component {
     }
   }
 
-  showUserNav(){
-    if (this.data.subsReady) {
-      return <OptionsMenu userName={this.data.currentUser.profile.fullName} />
-    } else {
-      return null
-    }
-  }
-
   setNotesListTitle(){
     let noteTitle, firstName
 
@@ -118,41 +105,51 @@ export default class Homepage extends React.Component {
       firstName = this.data.currentUser.profile.firstName
     }
 
-    noteTitle = firstName == null? "My Notes": firstName + "'s Notes"
+    noteTitle = firstName === null? "My Notes": firstName + "'s Notes"
     return noteTitle
   }
 
   showNotesList(){
     const noNotesMsg = "You currently don't have any notes :-/"
  
-    return this.data.subsReady?
-      <List
+    return <List
         items={this.data.collection}
         deleteItem={true}
         handleDeleteItem={this.handleDeleteNote}
         deleteMsg="Delete this note?"
         noItemsMsg={noNotesMsg}
        />
-    :
-      <Loading />  
   }
 
 
   render() {
+    const 
+      userNav = <OptionsMenu userName={null} />,
+      loading = <Loading /> 
 
-    return (
+    return this.data.subsReady?
       <div className="app-container">
         <AppHeader
           headerLeft={this.showNewNoteBtn()}
           headerCenter={this.showNewNoteForm()}
           headerRight={this.showUserNav()}
         />
-
          <div className="main-content">
          {this.showNotesList()}
         </div> 
       </div>
-    )
+    :
+      <div className="app-container">
+        <AppHeader
+          headerLeft={this.showNewNoteBtn()}
+          headerCenter={loading}
+          headerRight={loading}
+        />
+         <div className="main-content">
+         {loading}
+        </div> 
+      </div>
+  
   }
 }
 reactMixin(Homepage.prototype, ReactMeteorData)

@@ -8,11 +8,12 @@ import autoBind from 'react-autobind'
 import {Notes} from '../../both/Notes'
 
 //COMPONENTS
-import {AppHeader} from '../layout/AppHeader.jsx'
-import {IconBtn} from '../forms/buttons/IconBtn.jsx'
-import {PageTitle} from '../content/PageTitle.jsx'
-import {EditableText} from '../content/EditableText.jsx'
-import {Loading} from '../utility/Loading.jsx'
+import {AppHeader} from '../layout/AppHeader'
+import {IconBtn} from '../forms/buttons/IconBtn'
+import {PageTitle} from '../content/PageTitle'
+import {OptionsMenu} from '../menus/OptionsMenu'
+import {EditableText} from '../content/EditableText'
+import {Loading} from '../utility/Loading'
 
 
 export default class NoteDetail extends React.Component {
@@ -51,6 +52,13 @@ export default class NoteDetail extends React.Component {
     })
   }
 
+  userNav(){
+    return this.data.subsReady?
+      <OptionsMenu userName={this.data.currentUser.profile.fullName} />
+      :
+      null
+  }
+
   noteTitle(){
     const contentBlock = <PageTitle pageTitle={this.data.note.title} />
 
@@ -86,6 +94,7 @@ export default class NoteDetail extends React.Component {
 			  <AppHeader
           headerLeft={backBtn}
           headerCenter={this.noteTitle()}
+          headerRight={this.userNav()}
         />
 			  <div className="main-content">
   			   <EditableText
