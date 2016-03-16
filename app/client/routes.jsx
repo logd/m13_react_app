@@ -3,17 +3,17 @@ import React from 'react'
 import {mount} from 'react-mounter'
 
 //LAYOUTS
-import {MainLayout} from './layout/MainLayout.jsx'
+import {MainLayout} from './layout/MainLayout'
 
 //COMPONENTS
 // import Alert from 'react-s-alert'
 
 //PAGES
-import Homepage from './pages/Homepage.jsx'
-import NoteDetail from './pages/NoteDetail.jsx'
-import {Login} from './pages/Login.jsx'
-import {Signup} from './pages/Signup.jsx'
-// import NotFound from './pages/NotFound.jsx'
+import Homepage from './pages/Homepage'
+import NoteDetail from './pages/NoteDetail'
+import {Login} from './pages/Login'
+import {Signup} from './pages/Signup'
+import {NotFound} from './pages/NotFound'
 
 
 // ------------------------
@@ -124,10 +124,10 @@ restrictedRoutes.route('/notes/:_id', {
 // NOT FOUND / 404
 // ------------------------
 
-// FlowRouter.notFound = {
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <NotFound />
-//     });
-//   }
-// }
+FlowRouter.notFound = {
+  action() {
+    mount(MainLayout, {
+      content: () => <NotFound />
+    });
+  }
+}
