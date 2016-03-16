@@ -4,7 +4,8 @@
   "description": "Just notes",
   "scripts": {
     "dev": "meteor --settings private/dev_settings.json",
-    "deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy --settings private/prod_settings.json"
+    "deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy logd.meteorapp.com --settings private/galaxy_deploy.json",
+    "galaxy": ""
   },
   "keywords": [],
   "author": "Anders Ramsay",
