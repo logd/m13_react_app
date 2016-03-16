@@ -1,4 +1,25 @@
-//LAYOUT
+// --------------------------------
+// LAYOUT
+// --------------------------------
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-main-content {
+    flex: 1; 
+}
+
+.flex-column-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.layout-centered {
+  margin: 0 auto;
+  max-width: $centered-block-max-width;
+}
+
 .full-height {
 	height: 100%;
 }
@@ -10,6 +31,9 @@
 	text-align: center;
 }
 
+// --------------------------------
+// MODALS
+// --------------------------------
 .mask {
 	display: block;
 	position: fixed;
@@ -20,6 +44,10 @@
   z-index: $z-index-mask;
  
 }
+
+// --------------------------------
+// MOBILE
+// --------------------------------
 
 // src: https://css-tricks.com/snippets/css/momentum-scrolling-on-ios-overflow-elements/
 .momentum-scrolling {

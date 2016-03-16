@@ -1,4 +1,6 @@
-//BASE
+// --------------------------------
+// BASE
+// --------------------------------
 body {
   font-size: $base-font-size;
   font-family: $base-font;
@@ -12,7 +14,9 @@ body {
   color: $primary-text-inverted;
 }
 
-//HEADINGS
+// --------------------------------
+// HEADINGS
+// --------------------------------
 h1 {
 	font-size: $heading-1;
   // color: $primary-color-dark;
@@ -31,7 +35,9 @@ h4 { font-size: $heading-4; }
 h5 { font-size: $heading-5; }
 h6 { font-size: $heading-6; }
 
+// --------------------------------
 // LINKS
+// --------------------------------
 a {
   text-decoration: none;
   color: $link-color;
@@ -39,26 +45,25 @@ a {
   &:link, &:visited, &:active {
     color: $link-color;
   }
- 
  &:hover {
   text-decoration: underline;
  }
 }
- 
+
+// --------------------------------
+// MISC TEXT TYPES
+// --------------------------------
 .editable {
   &:hover {
     cursor: pointer;
   }
 }
-
 .help-text {
   font-size: $small-text;
   font-style: italic;
   color: $color-gray-5;
 }
-
 .secondary-text {
-  // font-size: $small-text;
   color: $color-gray-5;
 
     a {
