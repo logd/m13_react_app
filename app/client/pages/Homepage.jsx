@@ -119,7 +119,6 @@ export default class Homepage extends React.Component {
     }
 
     noteTitle = firstName == null? "My Notes": firstName + "'s Notes"
-
     return noteTitle
   }
 

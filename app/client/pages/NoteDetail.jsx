@@ -1,5 +1,4 @@
 //GLOBAL
-// import { Meteor } from 'meteor/meteor'
 import React from 'react'
 import reactMixin from 'react-mixin'
 import ReactMarkdown from 'react-markdown'
@@ -17,28 +16,18 @@ import {Loading} from '../utility/Loading.jsx'
 
 
 export default class NoteDetail extends React.Component {
+
   constructor(props) {
     super(props)
     autoBind(this)
-    // this.handleUpdates = this.handleUpdates.bind(this)
-
-    // this.state = {
-    //   inputValue: this.props.inputValue
-    // }
   }
 
   getMeteorData() {
     const
       noteId = FlowRouter.getParam("_id"),
       subscription = Meteor.subscribe('myCurrentNote', noteId),
-      subsReady = subscription.ready()
-    ;
-
-    let note;
-
-    if (subscription.ready()){
-      note = Notes.findOne({ _id: noteId })
-    }
+      subsReady = subscription.ready(),
+      note = subscription.ready()? Notes.findOne({ _id: noteId }) : null
      
     return {
       subsReady: subsReady,
@@ -47,11 +36,11 @@ export default class NoteDetail extends React.Component {
   }
 
   handleUpdates(field, value){
-    let note = this.data.note
-    let noteFields = {}
+    const 
+      note = this.data.note,
+      noteFields = {}
 
     noteFields[field] = value
-
     note.set(noteFields)
 
     Meteor.call('/note/save', note, (err, result) => {
@@ -62,41 +51,23 @@ export default class NoteDetail extends React.Component {
     })
   }
 
-  showNoteTitle(){
+  noteTitle(){
+    const contentBlock = <PageTitle pageTitle={this.data.note.title} />
 
-    if (this.data.subsReady) {
-      const contentBlock = <PageTitle pageTitle={this.data.note.title} />
-
-
-      return <EditableText
-              contentBlock={contentBlock}
-              editableText={this.data.note.title}
-              field="title"
-              multiLine={false}
-              handleUpdates={this.handleUpdates}
-            />
-    } else {
-      return <Loading />
-    }
+    return <EditableText
+            contentBlock={contentBlock}
+            editableText={this.data.note.title}
+            field="title"
+            multiLine={false}
+            handleUpdates={this.handleUpdates}
+          />
   }
 
-  showNoteContent(){
-
-    const emptyNote = <div className="centered gray-pill help-text">Empty note</div>
-
-    if (this.data.subsReady) {
-      const contentBlock = this.data.note.content === ""? emptyNote : <ReactMarkdown source={this.data.note.content} />;
-      
-      return <EditableText
-              contentBlock={contentBlock}
-              editableText={this.data.note.content}
-              field="content"
-              multiLine={true}
-              handleUpdates={this.handleUpdates}
-            />
-    } else {
-      return <Loading />
-    }
+  noteContent(){
+    return this.data.note.content === ""?
+      <div className="centered gray-pill help-text">Empty note</div>
+    : 
+      <ReactMarkdown source={this.data.note.content} />
   }
 
   handleBackBtn(){
@@ -107,19 +78,35 @@ export default class NoteDetail extends React.Component {
     const backBtn = <IconBtn
               handleClick={this.handleBackBtn}
               title="Go Back" 
-              icon="arrow_back" />;
+              icon="arrow_back" />,
+          loading = <Loading />
 
-		return (
+		return this.data.subsReady?
 			<div className="app-container">
 			  <AppHeader
           headerLeft={backBtn}
-          headerCenter={this.showNoteTitle()}
+          headerCenter={this.noteTitle()}
         />
 			  <div className="main-content">
-			   {this.showNoteContent()}
+  			   <EditableText
+            contentBlock={this.noteContent()}
+            editableText={this.data.note.content}
+            field="content"
+            multiLine={true}
+            handleUpdates={this.handleUpdates}
+          />
 			  </div>
       </div>
-		) 
+      :
+      <div className="app-container">
+        <AppHeader
+          headerLeft={backBtn}
+          headerCenter={loading}
+        />
+        <div className="main-content">
+         {loading}
+        </div>
+      </div>
 	}
 }
 
