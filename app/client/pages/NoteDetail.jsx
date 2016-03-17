@@ -27,7 +27,7 @@ export default class NoteDetail extends React.Component {
     let currentUser = null
 
     const
-      noteId = FlowRouter.getParam("_id"),
+      noteId = this.props._id,
       userData = Meteor.subscribe("userData"),
       subscription = Meteor.subscribe('myCurrentNote', noteId),
       subsReady = subscription.ready(),

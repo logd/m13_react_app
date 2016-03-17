@@ -100,9 +100,9 @@ restrictedRoutes.route('/', {
 
 restrictedRoutes.route('/notes/:_id', {
   name: 'noteDetail',
-  action() {
+  action(params) {
     mount(MainLayout, {
-      content: () => <NoteDetail />
+      content: () => <NoteDetail _id={params._id} />
     })
   }
 })
