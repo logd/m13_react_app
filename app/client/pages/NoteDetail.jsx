@@ -24,14 +24,24 @@ export default class NoteDetail extends React.Component {
   }
 
   getMeteorData() {
+    let currentUser = null
+
     const
       noteId = FlowRouter.getParam("_id"),
+      userData = Meteor.subscribe("userData"),
       subscription = Meteor.subscribe('myCurrentNote', noteId),
       subsReady = subscription.ready(),
       note = subscription.ready()? Notes.findOne({ _id: noteId }) : null
+
+    if (userData.ready()) {
+      currentUser = Meteor.user()
+    }
+  
      
     return {
       subsReady: subsReady,
+      signedIn: currentUser !== null,
+      currentUser: currentUser,
       note: note
     }
   }
@@ -52,11 +62,17 @@ export default class NoteDetail extends React.Component {
     })
   }
 
-  userNav(){
-    return this.data.subsReady?
-      <OptionsMenu userName={this.data.currentUser.profile.fullName} />
-      :
-      null
+  showUserMenu(){
+   if(this.data.signedIn){
+     const menu = <ul className='menu-list'>
+       <li>{this.data.currentUser.profile.firstName}</li>
+       <li><a href="/logout">Sign Out</a></li>
+      </ul>
+
+    return <OptionsMenu menu={menu} />
+   }
+  
+    return null
   }
 
   noteTitle(){
@@ -94,7 +110,7 @@ export default class NoteDetail extends React.Component {
 			  <AppHeader
           headerLeft={backBtn}
           headerCenter={this.noteTitle()}
-          headerRight={this.userNav()}
+          headerRight={this.showUserMenu()}
         />
 			  <div className="main-content">
   			   <EditableText
