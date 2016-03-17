@@ -20,7 +20,6 @@ standard-minifier-js
 kadira:flow-router
 jagi:astronomy
 jagi:astronomy-validators
-msavin:mongol
 react-meteor-data
 fourseven:scss
 accounts-google
