@@ -18,7 +18,6 @@ import {List} from '../lists/List.jsx'
 
 
 export default class Homepage extends React.Component {
-
   constructor(props){
     super(props)
     this.state = {
@@ -29,18 +28,45 @@ export default class Homepage extends React.Component {
   }
 
   getMeteorData() {
- 
+    let currentUser = null
+
     const
-	    userDataSub = Meteor.subscribe("userData"),
-	    myNotesSub = Meteor.subscribe("myNotes"),
-	    subsReady = userDataSub.ready() &&  myNotesSub.ready() 
- 
+	    userData = Meteor.subscribe("userData"),
+	    notesData = Meteor.subscribe("myNotes")
+
+    if (userData.ready()) {
+      currentUser = Meteor.user()
+    }
+  
     return {
-      subsReady: subsReady,
-      currentUser: Meteor.user() || null,
-      collection: Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
+      userData:    userData,
+      notesData:   notesData,
+      currentUser: currentUser,
+      signedIn: currentUser !== null,
+      collection:  Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
     }
   }
+
+  setNotesListTitle(){   
+    return this.data.signedIn?
+      this.data.currentUser.profile.firstName + "'s Notes"
+    : 
+      "My Notes"
+  }
+
+  showUserMenu(){
+   if(this.data.signedIn){
+     const menu = <ul className='menu-list'>
+       <li>{this.data.currentUser.profile.firstName}</li>
+       <li><a href="/logout">Sign Out</a></li>
+      </ul>
+
+    return <OptionsMenu menu={menu} />
+   }
+  
+    return null
+  }
+
 
   showNewNoteBtn(){
     return this.state.showNewNoteForm? 
@@ -98,17 +124,6 @@ export default class Homepage extends React.Component {
     }
   }
 
-  setNotesListTitle(){
-    let noteTitle, firstName
-
-    if (this.data.subsReady && this.data.currentUser){
-      firstName = this.data.currentUser.profile.firstName
-    }
-
-    noteTitle = firstName === null? "My Notes": firstName + "'s Notes"
-    return noteTitle
-  }
-
   showNotesList(){
     const noNotesMsg = "You currently don't have any notes :-/"
  
@@ -121,35 +136,33 @@ export default class Homepage extends React.Component {
        />
   }
 
-
   render() {
-    const 
-      userNav = <OptionsMenu userName={null} />,
-      loading = <Loading /> 
+    const loading = <Loading /> 
+    const appHeader = this.data.userData.ready?
+      <AppHeader
+        headerLeft={this.showNewNoteBtn()}
+        headerCenter={this.showNewNoteForm()}
+        headerRight={this.showUserMenu()}
+      />
+      :
+      <AppHeader
+        headerLeft={this.showNewNoteBtn()}
+        headerCenter={loading}
+        headerRight={null}
+      />
 
-    return this.data.subsReady?
-      <div className="app-container">
-        <AppHeader
-          headerLeft={this.showNewNoteBtn()}
-          headerCenter={this.showNewNoteForm()}
-          headerRight={this.showUserNav()}
-        />
+    const notesList = this.data.notesData.ready?
+      this.showNotesList()
+      :
+      loading
+
+    return <div className="app-container">
+        {appHeader}
          <div className="main-content">
-         {this.showNotesList()}
+         {notesList}
         </div> 
       </div>
-    :
-      <div className="app-container">
-        <AppHeader
-          headerLeft={this.showNewNoteBtn()}
-          headerCenter={loading}
-          headerRight={loading}
-        />
-         <div className="main-content">
-         {loading}
-        </div> 
-      </div>
-  
+      
   }
 }
 reactMixin(Homepage.prototype, ReactMeteorData)

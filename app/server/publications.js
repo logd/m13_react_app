@@ -15,15 +15,15 @@ Meteor.publish('myNotes', function() {
    // check(limit, Number);
     // Counts.publish(this, 'note_count', Notes.find({ ownerId: this.userId }), { noReady: true });
 
-  return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }); 
+  return Notes.find({ ownerId: this.userId }, {fields: myNotesFields })
   // return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }, {limit: limit }); 
-});
+})
 
 Meteor.publish('myCurrentNote', function(id) {
-  check(id, String);
+  check(id, String)
 
-  return Notes.find({ _id: id, ownerId: this.userId }, { fields: noteDetailFields }); 
-});
+  return Notes.find({ _id: id, ownerId: this.userId }, { fields: noteDetailFields }) 
+})
 
 Meteor.publish("userData", function () {
   if (this.userId) {
@@ -35,9 +35,9 @@ Meteor.publish("userData", function () {
         "profile.fullName" : true 
         }
       }
-    );
+    )
 
   } else {
     this.ready();
   }
-});
+})

@@ -47,6 +47,13 @@ AppLib.config = {
   }
 }
 
+// AppLib.users = {
+//   firstName: () => {
+
+
+//   }
+// }
+
 AppLib.accounts = {
   setProfileMainEmail: (user, options) => {
     if (options.email) {

@@ -47,12 +47,9 @@ export class OptionsMenu extends React.Component {
   }
 
   showMenu(){
-    const userNavMenuItems =  <span><li>{this.props.userName}</li><li><a href="/logout">Sign Out</a></li></span>
 
     return this.state.showMenu? 
-      <ul className='menu-list'>
-       {userNavMenuItems}
-      </ul>
+      this.props.menu
     :
       null
   }
@@ -70,7 +67,8 @@ export class OptionsMenu extends React.Component {
   }
 }
 
-OptionsMenu.propTypes = { 
+OptionsMenu.propTypes = {
+  menu: React.PropTypes.object.isRequired,
   showMenu: React.PropTypes.bool,
   title: React.PropTypes.string
 }
@@ -78,6 +76,5 @@ OptionsMenu.propTypes = {
 OptionsMenu.defaultProps = { 
   showMenu: false,
   title: "More options...",
-  outside: false,
-  userName: ""
+  outside: false
 }
