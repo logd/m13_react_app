@@ -77,7 +77,8 @@ export default class NoteDetail extends React.Component {
   noteTitle(){
     const contentBlock = <PageTitle pageTitle={this.data.note.title} />
 
-    return <EditableText
+    return 
+           <EditableText
             contentBlock={contentBlock}
             editableText={this.data.note.title}
             field="title"
@@ -111,13 +112,15 @@ export default class NoteDetail extends React.Component {
           headerCenter={this.noteTitle()}
           headerRight={this.showUserMenu()}
         />
-  			   <EditableText
-            contentBlock={this.noteContent()}
-            editableText={this.data.note.content}
-            field="content"
-            multiLine={true}
-            handleUpdates={this.handleUpdates}
-          />
+        <div className="main-content momentum-scrolling">
+			   <EditableText
+          contentBlock={this.noteContent()}
+          editableText={this.data.note.content}
+          field="content"
+          multiLine={true}
+          handleUpdates={this.handleUpdates}
+        />
+        </div>
 	
       </div>
       :

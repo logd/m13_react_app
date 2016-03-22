@@ -32,9 +32,8 @@ export class EditableText extends React.Component {
         field={this.props.field}
       />
     :
-      <div className="main-content momentum-scrolling">
+      
         <span className="editable" onClick={this.setEditMode}>{this.props.contentBlock}</span>
-      </div>
     ;
   }
 
