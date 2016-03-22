@@ -33,9 +33,6 @@ export const Login = (props) => {
             <p><button onClick={loginWithGoogle} className="btn btn-google btn-with-icon"><i className="fa fa-google-plus"></i>{googleLoginLabel}</button>
             </p>
             {loginWithPassword()}
-            <div className="centered secondary-text footer-text login-footer">
-             
-            </div>
           </main>
         </div>
 }
