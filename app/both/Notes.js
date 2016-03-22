@@ -37,12 +37,10 @@ export const AstroNote = Astro.Class({
       )
     },
     ownerId: {
-      type: 'string' //owner id is not validated because it is not published/sent to the client (and the object returned from the client is what is validated, meaning it would return null)
+      type: 'string' //owner id is not validated because it is never published/sent to the client (and the object returned from the client is what is validated, meaning it would return null)
     },
   }
 })
-
-
 
 Meteor.methods({
 
@@ -71,8 +69,3 @@ Meteor.methods({
   '/note/delete': (id) => Notes.remove({_id: id})
 
 })
-
-
-
-
-
