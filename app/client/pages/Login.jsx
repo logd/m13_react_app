@@ -28,7 +28,7 @@ export const Login = (props) => {
 
   return <div className="app-container">
           <AppHeader />
-          <main className="main-content layout-centered centered">
+          <main className="main-content centered">
             <h2>Please Sign In</h2>
             <p><button onClick={loginWithGoogle} className="btn btn-google btn-with-icon"><i className="fa fa-google-plus"></i>{googleLoginLabel}</button>
             </p>
