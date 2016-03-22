@@ -111,7 +111,6 @@ export default class NoteDetail extends React.Component {
           headerCenter={this.noteTitle()}
           headerRight={this.showUserMenu()}
         />
-			  <div className="main-content">
   			   <EditableText
             contentBlock={this.noteContent()}
             editableText={this.data.note.content}
@@ -119,7 +118,7 @@ export default class NoteDetail extends React.Component {
             multiLine={true}
             handleUpdates={this.handleUpdates}
           />
-			  </div>
+	
       </div>
       :
       <div className="app-container">
