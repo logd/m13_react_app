@@ -6,7 +6,7 @@ import {mount} from 'react-mounter'
 import {MainLayout} from './layout/MainLayout'
 
 //COMPONENTS
-// import Alert from 'react-s-alert'
+import Alert from 'react-s-alert'
 
 //PAGES
 import Homepage from './pages/Homepage'
@@ -60,7 +60,7 @@ FlowRouter.route('/logout', {
   action: function() {
     Meteor.logout(function(){
       FlowRouter.go('login')
-      // Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
+      Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
     })
   }
 })
