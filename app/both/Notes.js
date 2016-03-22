@@ -28,18 +28,21 @@ export const AstroNote = Astro.Class({
       )
     },
     updatedAt: {
-      type: 'date'
+      type: 'date',
+      validator:Validators.and(
+        [
+          Validators.required(),
+          Validators.date()
+        ]
+      )
     },
     ownerId: {
-      type: 'string'
+      type: 'string' //owner id is not validated because it is not published/sent to the client (and the object returned from the client is what is validated, meaning it would return null)
     },
-  },
-  events: {
-    beforeInsert() {
-      this.updatedAt = new Date()
-    }
   }
 })
+
+
 
 Meteor.methods({
 
@@ -47,7 +50,8 @@ Meteor.methods({
 		const note = new AstroNote()
     note.set({
       title: title,
-      ownerId: Meteor.userId()
+      ownerId: Meteor.userId(),
+      updatedAt: new Date()
     })
     if (note.validate()) {
       note.save()

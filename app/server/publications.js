@@ -8,7 +8,8 @@ const
   , 
   noteDetailFields = {
    "title" : true,
-   "content": true
+   "content": true,
+   "updatedAt": true
   }
 
 Meteor.publish('myNotes', function() {
