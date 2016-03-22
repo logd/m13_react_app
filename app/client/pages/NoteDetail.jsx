@@ -77,8 +77,7 @@ export default class NoteDetail extends React.Component {
   noteTitle(){
     const contentBlock = <PageTitle pageTitle={this.data.note.title} />
 
-    return 
-           <EditableText
+    return <EditableText
             contentBlock={contentBlock}
             editableText={this.data.note.title}
             field="title"
