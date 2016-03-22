@@ -82,6 +82,7 @@ body.scrolling {
   // height:100%; 
   display: flex;
   flex-direction: column;
+  min-width: $app-min-width;
 }
 
 .main-content-editing {
