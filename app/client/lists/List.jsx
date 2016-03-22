@@ -6,7 +6,7 @@ export const List = (props) => {
   const
 
     showDeleteBtn = (item) => {
-      return props.deleteItem? <DeleteBtn handleDelete={props.handleDeleteItem} {...props} item={item} /> : null 
+      return props.deleteItem? <DeleteBtn handleDelete={props.handleDeleteItem} {...props} item={item} size="btn-x-small" /> : null 
     }
     ,
 

@@ -10,6 +10,7 @@
   "author": "Anders Ramsay",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.3",
     "react": "^0.14.7",
     "react-autobind": "^1.0.6",
     "react-dom": "^0.14git .7",

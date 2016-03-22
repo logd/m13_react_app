@@ -74,7 +74,7 @@ export default class Homepage extends React.Component {
     :
       <IconBtn handleClick={this.toggleNewNoteForm} title="New Note" icon="add" />
   } 
-
+ 
   showNewNoteForm(){
     return this.state.showNewNoteForm?
       <SingleFieldSubmit placeholder="New Note..." handleInput={this.handleCreateNote} maxLength={AppLib.notes.title.maxLength} handleOnBlur={this.cancelNewNote} />
