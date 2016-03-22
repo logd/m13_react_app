@@ -28,3 +28,5 @@ service-configuration
 tmeasday:publish-counts
 jparker:gravatar
 idorecall:email-normalize
+browser-policy
+ongoworks:security
