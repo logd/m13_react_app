@@ -89,17 +89,13 @@ body.scrolling {
   flex: 1;
   margin: 0;
   padding: 0;
-  // height:100%; 
   display: flex;
   flex-direction: column;
 
     textarea {
-      font-size: $base-font-size;
       margin:0;
       padding:0;
-      // padding-left: $app-left-right-padding;
-      // padding-right: $app-left-right-padding;
-      // padding-bottom: 0;
+      padding-top: $form-controls-padding;
       outline: none;
       resize: none;
       border:none;
@@ -107,7 +103,6 @@ body.scrolling {
     .form-controls {
       border-top: 1px solid $color-gray-7;
       padding-top: $form-controls-padding;
-      // margin: 0  $app-left-right-padding;
     }
 }
 

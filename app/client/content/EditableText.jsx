@@ -31,8 +31,7 @@ export class EditableText extends React.Component {
         handleUpdates={this.props.handleUpdates}
         field={this.props.field}
       />
-    :
-      
+    : 
         <span className="editable" onClick={this.setEditMode}>{this.props.contentBlock}</span>
     ;
   }
