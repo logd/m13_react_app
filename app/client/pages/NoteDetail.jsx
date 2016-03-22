@@ -37,7 +37,6 @@ export default class NoteDetail extends React.Component {
       currentUser = Meteor.user()
     }
   
-     
     return {
       subsReady: subsReady,
       signedIn: currentUser !== null,
