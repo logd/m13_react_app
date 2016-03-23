@@ -21,8 +21,7 @@ export default class Homepage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      showNewNoteForm: false,
-      totalItemCount: null
+      showNewNoteForm: false
     }
     autoBind(this)
   }
@@ -41,6 +40,7 @@ export default class Homepage extends React.Component {
     return {
       userData:    userData,
       notesData:   notesData,
+      notesCount: Counts.get('note_count'),
       currentUser: currentUser,
       signedIn: currentUser !== null,
       collection:  Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
@@ -94,10 +94,10 @@ export default class Homepage extends React.Component {
 
     if (AppLib.str.isEmpty(title)) { return }
   
-    //prevent newly created item from displaying before redirect
-    // this.setState({ 
-    //   itemsDisplayed: AppLib.lists.lockItemCount(this.state.totalItemCount, this.state.itemsDisplayed)
-    // })
+    //prevent newly created item from displaying in the items list before redirect: get current qty of items displayed
+    this.setState({ 
+      itemsDisplayed: AppLib.lists.lockItemCount(this.state.totalItemCount, this.state.itemsDisplayed)
+    })
 
     Meteor.call('/note/create', title, (err, result) => {
       if (!err) {
@@ -165,4 +165,5 @@ export default class Homepage extends React.Component {
       
   }
 }
+
 reactMixin(Homepage.prototype, ReactMeteorData)

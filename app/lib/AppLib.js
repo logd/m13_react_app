@@ -16,9 +16,7 @@ AppLib.forms = {
 }
 
 AppLib.lists = {
-  lockItemCount: (totalQty, displayedQty) => {
-    return totalQty <= displayedQty? totalQty : displayedQty
-  }
+  lockItemCount: (totalQty, displayedQty) => totalQty <= displayedQty? totalQty : displayedQty
 }
 
 AppLib.notes = {

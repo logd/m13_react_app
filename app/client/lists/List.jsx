@@ -1,49 +1,69 @@
 import React from 'react'
+import autoBind from 'react-autobind'
 import {DeleteBtn} from '../forms/buttons/DeleteBtn.jsx'
 
-export const List = (props) => {
+export class List extends React.Component{
 
-  const
-
-    showDeleteBtn = (item) => {
-      return props.deleteItem? <DeleteBtn handleDelete={props.handleDeleteItem} {...props} item={item} size="btn-x-small" /> : null 
+  constructor(props){
+    super(props)
+    this.state = {
+      itemsDisplayed: this.props.defaultItemsDisplayed
     }
-    ,
+    autoBind(this)
+  }
 
-    noItems = (items) => items.length === 0
+  _noItems(items){
+    return items.length === 0
+  } 
 
-    ,
+  noItemsMsg(msg = "There are no items."){
+    return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
+  }
 
-    noItemsMsg = (msg = "There are currently no items.") => <div className="centered block-padding"><span className="help-text">{msg}</span></div>
-    ,
+  showDeleteBtn(item){
+    return this.props.deleteItem?
+      <DeleteBtn handleDelete={this.props.handleDeleteItem} {...this.props} item={item} size="btn-x-small" />
+    : 
+      null 
+  }
 
-    listItems = (items) => {
-      return <ul className="item-list">
-              {
-                items.map((item, index) => {
-                  const path = FlowRouter.path( "noteDetail" , {_id: item._id})
-                  
-                  return <li key={index} className="list-group-item">
-                          <div className="item-list-main-content">
-                             <a href={path}>{item.title}</a>
-                          </div>
-                          {showDeleteBtn(item)}
-                          </li>
-                })
-              }
-            </ul>
-    }
+  listItems(items){
+    return <ul className="item-list">
+      {
+        items.map((item, index) => {
+          const path = FlowRouter.path( "noteDetail" , {_id: item._id})
+          
+          return <li key={index} className="list-group-item">
+                  <div className="item-list-main-content">
+                     <a href={path}>{item.title}</a>
+                  </div>
+                  {this.showDeleteBtn(item)}
+                  </li>
+        })
+      }
+    </ul>
+  } 
+    
+  render() {    
+    return this._noItems(this.props.items)?
+      this.noItemsMsg(this.props.noItemsMsg)
+    : 
+      this.listItems(this.props.items)
+  }
 
-  return noItems(props.items)? noItemsMsg(props.noItemsMsg) : listItems(props.items)
 }
 
 List.propTypes = {
   items: React.PropTypes.array.isRequired,
+  defaultItemsDisplayed: React.PropTypes.number,
+  itemLoadIncrement: React.PropTypes.number,
   noItemsMsg: React.PropTypes.string,
   deleteItem: React.PropTypes.bool,
   handleDeleteItem: React.PropTypes.func
 }
 
 List.defaultProps = { 
-  deleteItem: false
+  deleteItem: false,
+  defaultItemsDisplayed: 20,
+  itemLoadIncrement: 10
 }

@@ -14,7 +14,7 @@ const
 
 Meteor.publish('myNotes', function() {
    // check(limit, Number);
-    // Counts.publish(this, 'note_count', Notes.find({ ownerId: this.userId }), { noReady: true });
+  Counts.publish(this, 'note_count', Notes.find({ ownerId: this.userId }), { noReady: true })
 
   return Notes.find({ ownerId: this.userId }, {fields: myNotesFields })
   // return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }, {limit: limit }); 
