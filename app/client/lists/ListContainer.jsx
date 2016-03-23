@@ -18,7 +18,7 @@ export class ListContainer extends React.Component{
 
   getMeteorData() {
     const
-      subscription = Meteor.subscribe("myNotes", this.state.itemsDisplayed)
+      subscription = Meteor.subscribe("myNotes", this.state.displayCount)
       ,
       notesCount = subscription.ready?
         Counts.get('note_count')
@@ -28,17 +28,17 @@ export class ListContainer extends React.Component{
   
     return {
       subscription:  subscription,
-      notesCount:    notesCount,
+      totalCount:    notesCount,
       collection:    Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
     }
   }
 
   // noItems(){
-  //   return this.props.itemCount === 0
+  //   return this.props.totalCount === 0
   // } 
 
   showLoadMore(currentlyDisplayed, totalCount){
-    return currentlyDisplayed > totalCount?
+    return currentlyDisplayed < totalCount?
       <div className="centered">
         <TextBtn
           title="Load More..."
@@ -50,8 +50,10 @@ export class ListContainer extends React.Component{
   } 
 
   loadMoreItems(){
-    this.props.loadMoreItems(this.props.itemBlockSize)
-  } 
+    this.setState({
+      displayCount: this.state.displayCount + this.props.itemBlockSize
+    })
+  }
 
   noItemsMsg(msg = "There are no items."){
     return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
@@ -61,12 +63,12 @@ export class ListContainer extends React.Component{
   render() {
 
     if (this.data.subscription.ready) {
-      return this.data.notesCount === 0?
+      return this.data.totalCount === 0?
         this.noItemsMsg(this.props.noItemsMsg)
       : 
         <div>
           <List items={this.data.collection} />
-           {this.showLoadMore(this.state.itemsDisplayed, this.data.notesCount)}
+           {this.showLoadMore(this.state.displayCount, this.data.totalCount)}
         </div>
     } else {
       return <Loading />

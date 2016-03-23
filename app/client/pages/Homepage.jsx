@@ -4,7 +4,7 @@ import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 
 //DATA
-import {Notes, AstroNote as Note} from '../../both/Notes'
+import {AstroNote as Note} from '../../both/Notes'
 
 //COMPONENTS
 import {AppHeader} from '../layout/AppHeader.jsx'
@@ -20,8 +20,9 @@ export default class Homepage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      showNewNoteForm: false,
-      itemsDisplayed: this.props.itemBlockSize
+      showNewNoteForm: false
+      // ,
+      // itemsDisplayed: this.props.itemBlockSize
     }
     autoBind(this)
   }
@@ -30,8 +31,9 @@ export default class Homepage extends React.Component {
     let currentUser = null
 
     const
-	    userData = Meteor.subscribe("userData"),
-	    notesData = Meteor.subscribe("myNotes", this.state.itemsDisplayed)
+	    userData = Meteor.subscribe("userData")
+     //  ,
+	    // notesData = Meteor.subscribe("myNotes", this.state.itemsDisplayed)
 
     if (userData.ready()) {
       currentUser = Meteor.user()
@@ -39,12 +41,14 @@ export default class Homepage extends React.Component {
   
     return {
       userData:    userData,
-      notesData:   notesData,
-      notesCount: Counts.get('note_count'),
       currentUser: currentUser,
-      signedIn: currentUser !== null,
-      collection:  Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
+      signedIn: currentUser !== null
+
     }
+      // notesData:   notesData,
+      // notesCount: Counts.get('note_count'),
+      //       ,
+      // collection:  Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
   }
 
   setNotesListTitle(){   
@@ -130,11 +134,11 @@ export default class Homepage extends React.Component {
     })
   }
 
-  showNotesList(){
-    const noNotesMsg = "You currently don't have any notes :-/"
+  // showNotesList(){
+  //   const noNotesMsg = "You currently don't have any notes :-/"
  
-    return <ListContainer  />
-  }
+  //   return 
+  // }
 
     // items={this.data.collection}
     //     itemCount={this.data.notesCount}
@@ -161,22 +165,22 @@ export default class Homepage extends React.Component {
         headerRight={null}
       />
 
-    const notesList = this.data.notesData.ready?
-      this.showNotesList()
-      :
-      loading
+    // const notesList = this.data.notesData.ready?
+    //   this.showNotesList()
+    //   :
+    //   loading
 
     return <div className="app-container">
              {appHeader}
              <div className="main-content">
-              {notesList}
+              <ListContainer itemBlockSize={5} />
              </div> 
            </div>
       
   }
 }
-Homepage.defaultProps = { 
-  itemBlockSize:5
-}
+// Homepage.defaultProps = { 
+//   itemBlockSize:5
+// }
 
 reactMixin(Homepage.prototype, ReactMeteorData)
