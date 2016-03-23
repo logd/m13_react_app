@@ -21,7 +21,8 @@ export default class Homepage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      showNewNoteForm: false
+      showNewNoteForm: false,
+      itemsDisplayed: this.props.itemsDisplayed
     }
     autoBind(this)
   }
@@ -31,7 +32,7 @@ export default class Homepage extends React.Component {
 
     const
 	    userData = Meteor.subscribe("userData"),
-	    notesData = Meteor.subscribe("myNotes")
+	    notesData = Meteor.subscribe("myNotes", this.state.itemsDisplayed)
 
     if (userData.ready()) {
       currentUser = Meteor.user()
@@ -165,6 +166,9 @@ export default class Homepage extends React.Component {
       </div>
       
   }
+}
+Homepage.defaultProps = { 
+  itemsDisplayed:5
 }
 
 reactMixin(Homepage.prototype, ReactMeteorData)

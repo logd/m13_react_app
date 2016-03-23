@@ -1,5 +1,6 @@
 import React from 'react'
 import autoBind from 'react-autobind'
+import {TextBtn} from '../forms/buttons/TextBtn.jsx'
 import {DeleteBtn} from '../forms/buttons/DeleteBtn.jsx'
 
 export class List extends React.Component{
@@ -22,9 +23,18 @@ export class List extends React.Component{
 
   _showLoadMore(){
     return this.state.itemsDisplayed < this._itemCount()?
-      <p>Load More...</p>
+      <div className="centered">
+        <TextBtn
+          title="Load More..."
+          handleClick={this.loadMoreItems()}
+        />
+      </div>
     :
       null
+  } 
+
+  loadMoreItems(){
+     
   } 
 
   noItemsMsg(msg = "There are no items."){

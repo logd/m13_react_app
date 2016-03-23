@@ -12,11 +12,11 @@ const
    "updatedAt": true
   }
 
-Meteor.publish('myNotes', function() {
+Meteor.publish('myNotes', function(limit) {
    // check(limit, Number);
   Counts.publish(this, 'note_count', Notes.find({ ownerId: this.userId }), { noReady: true })
 
-  return Notes.find({ ownerId: this.userId }, {fields: myNotesFields })
+  return Notes.find({ ownerId: this.userId }, {fields: myNotesFields, limit: limit })
   // return Notes.find({ ownerId: this.userId }, {fields: myNotesFields }, {limit: limit }); 
 })
 
