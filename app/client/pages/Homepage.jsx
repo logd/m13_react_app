@@ -135,6 +135,7 @@ export default class Homepage extends React.Component {
         deleteMsg="Delete this note?"
         noItemsMsg={noNotesMsg} 
         defaultItemsDisplayed={5}
+        loadMoreItems={this.loadMoreItems}
        />
   }
 
