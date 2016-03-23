@@ -14,8 +14,7 @@ import {OptionsMenu} from '../menus/OptionsMenu.jsx'
 import {IconBtn} from '../forms/buttons/IconBtn.jsx'
 import {Loading} from '../utility/Loading.jsx'
 import {SingleFieldSubmit} from '../forms/SingleFieldSubmit.jsx'
-import {List} from '../lists/List.jsx'
-
+import {ListContainer} from '../lists/ListContainer.jsx'
 
 export default class Homepage extends React.Component {
   constructor(props){
@@ -128,8 +127,9 @@ export default class Homepage extends React.Component {
   showNotesList(){
     const noNotesMsg = "You currently don't have any notes :-/"
  
-    return <List
+    return <ListContainer
         items={this.data.collection}
+        itemCount={this.data.notesCount}
         deleteItem={true}
         handleDeleteItem={this.handleDeleteNote}
         deleteMsg="Delete this note?"

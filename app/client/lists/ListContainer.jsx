@@ -1,5 +1,6 @@
 import React from 'react'
 import autoBind from 'react-autobind'
+import {List} from './List.jsx'
 import {TextBtn} from '../forms/buttons/TextBtn.jsx'
 
 export class ListContainer extends React.Component{
@@ -12,7 +13,7 @@ export class ListContainer extends React.Component{
     autoBind(this)
   }
   noItems(){
-    return this.props.totalItems === 0
+    return this.props.itemCount === 0
   } 
 
   showLoadMore(){
@@ -35,36 +36,22 @@ export class ListContainer extends React.Component{
     return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
   }
 
-  showDeleteBtn(item){
-    return this.props.deleteItem?
-      <DeleteBtn handleDelete={this.props.handleDeleteItem} {...this.props} item={item} size="btn-x-small" />
-    : 
-      null 
-  }
-
-  listItems(items){
-    return <ul className="item-list">
-      {
-        items.map((item, index) => {
-          const path = FlowRouter.path( "noteDetail" , {_id: item._id})
-          
-          return <li key={index} className="list-group-item">
-                  <div className="item-list-main-content">
-                     <a href={path}>{item.title}</a>
-                  </div>
-                  {this.showDeleteBtn(item)}
-                  </li>
-        })
-      }
-    </ul>
-  } 
+  // showDeleteBtn(item){
+  //   return this.props.deleteItem?
+  //     <DeleteBtn handleDelete={this.props.handleDeleteItem} {...this.props} item={item} size="btn-x-small" />
+  //   : 
+  //     null 
+  // }
     
   render() { 
 
-    return this._noItems()?
+    return this.noItems()?
       this.noItemsMsg(this.props.noItemsMsg)
     : 
-      <div>{this.listItems(this.props.items)}{this._showLoadMore()}</div>
+      <div>
+        <List {...this.props} />
+        {this.showLoadMore()}
+      </div>
   }
 
 }

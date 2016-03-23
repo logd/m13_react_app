@@ -13,6 +13,7 @@ export const List = (props) => {
   return <ul className="item-list">
     {
       props.items.map((item, index) => {
+        //TODO: set path as a prop
         const path = FlowRouter.path( "noteDetail" , {_id: item._id})
         
         return <li key={index} className="list-group-item">
