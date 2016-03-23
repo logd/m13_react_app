@@ -51,7 +51,9 @@ Meteor.methods({
       ownerId: Meteor.userId(),
       updatedAt: new Date()
     })
+
     if (note.validate()) {
+      
       note.save()
       return note
     }

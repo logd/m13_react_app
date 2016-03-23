@@ -33,10 +33,6 @@ export class ListContainer extends React.Component{
     }
   }
 
-  // noItems(){
-  //   return this.props.totalCount === 0
-  // } 
-
   showLoadMore(currentlyDisplayed, totalCount){
     return currentlyDisplayed < totalCount?
       <div className="centered">
@@ -58,6 +54,18 @@ export class ListContainer extends React.Component{
   noItemsMsg(msg = "There are no items."){
     return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
   }
+  //TODO: make not specific to notes
+  handleDeleteItem(item) {
+    const confirmDelete = confirm("Really delete '" + item.title + "'?")
+
+    if(confirmDelete){
+      Meteor.call('/note/delete', item._id, function(err, result) {
+        if (err) {
+          console.log('there was an error: ' + err.reason)
+        }
+      })
+    }
+  }
 
     
   render() {
@@ -67,7 +75,12 @@ export class ListContainer extends React.Component{
         this.noItemsMsg(this.props.noItemsMsg)
       : 
         <div>
-          <List items={this.data.collection} />
+          <List
+            items={this.data.collection}
+            deleteItem={true}
+            handleDeleteItem={this.handleDeleteItem}
+            deleteMsg="Delete this note?"
+          />
            {this.showLoadMore(this.state.displayCount, this.data.totalCount)}
         </div>
     } else {
@@ -75,18 +88,6 @@ export class ListContainer extends React.Component{
     }
   }
 }
-
-    // const notesList = this.subscription.ready?
-    //   this.showNotesList()
-    //   :
-      
-
-    // return <div className="app-container">
-    //     {appHeader}
-    //      <div className="main-content">
-    //      {notesList}
-    //     </div> 
-    //   </div>
 
 ListContainer.propTypes = {
   defaultItemsDisplayed: React.PropTypes.number,

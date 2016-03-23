@@ -21,8 +21,6 @@ export default class Homepage extends React.Component {
     super(props)
     this.state = {
       showNewNoteForm: false
-      // ,
-      // itemsDisplayed: this.props.itemBlockSize
     }
     autoBind(this)
   }
@@ -30,25 +28,18 @@ export default class Homepage extends React.Component {
   getMeteorData() {
     let currentUser = null
 
-    const
-	    userData = Meteor.subscribe("userData")
-     //  ,
-	    // notesData = Meteor.subscribe("myNotes", this.state.itemsDisplayed)
-
-    if (userData.ready()) {
+    const subscription = Meteor.subscribe("userData")
+ 
+    if (subscription.ready()) {
       currentUser = Meteor.user()
     }
   
     return {
-      userData:    userData,
+      subscription: subscription,
       currentUser: currentUser,
       signedIn: currentUser !== null
-
     }
-      // notesData:   notesData,
-      // notesCount: Counts.get('note_count'),
-      //       ,
-      // collection:  Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
+
   }
 
   setNotesListTitle(){   
@@ -98,11 +89,6 @@ export default class Homepage extends React.Component {
 
     if (AppLib.str.isEmpty(title)) { return }
   
-    //prevent newly created item from displaying in the items list before redirect: get current qty of items displayed
-    this.setState({ 
-      itemsDisplayed: AppLib.lists.lockItemCount(this.state.totalItemCount, this.state.itemsDisplayed)
-    })
-
     Meteor.call('/note/create', title, (err, result) => {
       if (!err) {
         if (Meteor.isClient) {
@@ -116,17 +102,6 @@ export default class Homepage extends React.Component {
     })
   }
 
-  handleDeleteNote(note) {
-    const confirmDelete = confirm("Really delete '" + note.title + "'?")
-
-    if(confirmDelete){
-      Meteor.call('/note/delete', note._id, function(err, result) {
-        if (err) {
-          console.log('there was an error: ' + err.reason)
-        }
-      })
-    }
-  }
 
   loadMoreItems(qty){
     this.setState({
@@ -134,25 +109,9 @@ export default class Homepage extends React.Component {
     })
   }
 
-  // showNotesList(){
-  //   const noNotesMsg = "You currently don't have any notes :-/"
- 
-  //   return 
-  // }
-
-    // items={this.data.collection}
-    //     itemCount={this.data.notesCount}
-    //     itemBlockSize={5}
-    //     deleteItem={true}
-    //     handleDeleteItem={this.handleDeleteNote}
-    //     deleteMsg="Delete this note?"
-    //     noItemsMsg={noNotesMsg} 
-    //     defaultItemsDisplayed={5}
-    //     loadMoreItems={this.loadMoreItems}
-
   render() {
     const loading = <Loading /> 
-    const appHeader = this.data.userData.ready?
+    const appHeader = this.data.subscription.ready?
       <AppHeader
         headerLeft={this.showNewNoteBtn()}
         headerCenter={this.showNewNoteForm()}
@@ -165,22 +124,14 @@ export default class Homepage extends React.Component {
         headerRight={null}
       />
 
-    // const notesList = this.data.notesData.ready?
-    //   this.showNotesList()
-    //   :
-    //   loading
-
     return <div className="app-container">
              {appHeader}
              <div className="main-content">
-              <ListContainer itemBlockSize={5} />
+              <ListContainer />
              </div> 
            </div>
       
   }
 }
-// Homepage.defaultProps = { 
-//   itemBlockSize:5
-// }
 
 reactMixin(Homepage.prototype, ReactMeteorData)
