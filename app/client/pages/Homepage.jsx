@@ -21,7 +21,7 @@ export default class Homepage extends React.Component {
     super(props)
     this.state = {
       showNewNoteForm: false,
-      itemsDisplayed: this.props.itemsDisplayed
+      itemsDisplayed: this.props.itemBlockSize
     }
     autoBind(this)
   }
@@ -124,20 +124,27 @@ export default class Homepage extends React.Component {
     }
   }
 
+  loadMoreItems(qty){
+    this.setState({
+      itemsDisplayed: this.state.itemsDisplayed + qty
+    })
+  }
+
   showNotesList(){
     const noNotesMsg = "You currently don't have any notes :-/"
  
-    return <ListContainer
-        items={this.data.collection}
-        itemCount={this.data.notesCount}
-        deleteItem={true}
-        handleDeleteItem={this.handleDeleteNote}
-        deleteMsg="Delete this note?"
-        noItemsMsg={noNotesMsg} 
-        defaultItemsDisplayed={5}
-        loadMoreItems={this.loadMoreItems}
-       />
+    return <ListContainer  />
   }
+
+    // items={this.data.collection}
+    //     itemCount={this.data.notesCount}
+    //     itemBlockSize={5}
+    //     deleteItem={true}
+    //     handleDeleteItem={this.handleDeleteNote}
+    //     deleteMsg="Delete this note?"
+    //     noItemsMsg={noNotesMsg} 
+    //     defaultItemsDisplayed={5}
+    //     loadMoreItems={this.loadMoreItems}
 
   render() {
     const loading = <Loading /> 
@@ -160,16 +167,16 @@ export default class Homepage extends React.Component {
       loading
 
     return <div className="app-container">
-        {appHeader}
-         <div className="main-content">
-         {notesList}
-        </div> 
-      </div>
+             {appHeader}
+             <div className="main-content">
+              {notesList}
+             </div> 
+           </div>
       
   }
 }
 Homepage.defaultProps = { 
-  itemsDisplayed:5
+  itemBlockSize:5
 }
 
 reactMixin(Homepage.prototype, ReactMeteorData)

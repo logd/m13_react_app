@@ -1,27 +1,48 @@
 import React from 'react'
 import autoBind from 'react-autobind'
+import reactMixin from 'react-mixin'
+import {Notes} from '../../both/Notes'
 import {List} from './List.jsx'
 import {TextBtn} from '../forms/buttons/TextBtn.jsx'
+import {Loading} from '../utility/Loading.jsx'
 
 export class ListContainer extends React.Component{
 
   constructor(props){
     super(props)
     this.state = {
-      displayedItems: this.props.defaultItemsDisplayed
+      displayCount: this.props.itemBlockSize
     }
     autoBind(this)
   }
-  noItems(){
-    return this.props.itemCount === 0
-  } 
 
-  showLoadMore(){
-    return this.props.totalItems > this.state.displayedItems?
+  getMeteorData() {
+    const
+      subscription = Meteor.subscribe("myNotes", this.state.itemsDisplayed)
+      ,
+      notesCount = subscription.ready?
+        Counts.get('note_count')
+      : 
+        null
+
+  
+    return {
+      subscription:  subscription,
+      notesCount:    notesCount,
+      collection:    Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
+    }
+  }
+
+  // noItems(){
+  //   return this.props.itemCount === 0
+  // } 
+
+  showLoadMore(currentlyDisplayed, totalCount){
+    return currentlyDisplayed > totalCount?
       <div className="centered">
         <TextBtn
           title="Load More..."
-          handleClick={this.loadMoreItems()}
+          handleClick={this.loadMoreItems}
         />
       </div>
     :
@@ -29,35 +50,43 @@ export class ListContainer extends React.Component{
   } 
 
   loadMoreItems(){
-    this.props.loadMoreItems(itemLoadIncrement)
+    this.props.loadMoreItems(this.props.itemBlockSize)
   } 
 
   noItemsMsg(msg = "There are no items."){
     return <div className="centered block-padding"><span className="help-text">{msg}</span></div>
   }
 
-  // showDeleteBtn(item){
-  //   return this.props.deleteItem?
-  //     <DeleteBtn handleDelete={this.props.handleDeleteItem} {...this.props} item={item} size="btn-x-small" />
-  //   : 
-  //     null 
-  // }
     
-  render() { 
+  render() {
 
-    return this.noItems()?
-      this.noItemsMsg(this.props.noItemsMsg)
-    : 
-      <div>
-        <List {...this.props} />
-        {this.showLoadMore()}
-      </div>
+    if (this.data.subscription.ready) {
+      return this.data.notesCount === 0?
+        this.noItemsMsg(this.props.noItemsMsg)
+      : 
+        <div>
+          <List items={this.data.collection} />
+           {this.showLoadMore(this.state.itemsDisplayed, this.data.notesCount)}
+        </div>
+    } else {
+      return <Loading />
+    }
   }
-
 }
 
+    // const notesList = this.subscription.ready?
+    //   this.showNotesList()
+    //   :
+      
+
+    // return <div className="app-container">
+    //     {appHeader}
+    //      <div className="main-content">
+    //      {notesList}
+    //     </div> 
+    //   </div>
+
 ListContainer.propTypes = {
-  items: React.PropTypes.array.isRequired,
   defaultItemsDisplayed: React.PropTypes.number,
   itemLoadIncrement: React.PropTypes.number,
   noItemsMsg: React.PropTypes.string,
@@ -67,6 +96,8 @@ ListContainer.propTypes = {
 
 ListContainer.defaultProps = { 
   deleteItem: false,
-  defaultItemsDisplayed: 20,
-  itemLoadIncrement: 10
+  itemBlockSize: 20
 }
+
+
+reactMixin(ListContainer.prototype, ReactMeteorData)
