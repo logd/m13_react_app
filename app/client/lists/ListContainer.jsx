@@ -90,11 +90,8 @@ export class ListContainer extends React.Component{
 }
 
 ListContainer.propTypes = {
-  defaultItemsDisplayed: React.PropTypes.number,
-  itemLoadIncrement: React.PropTypes.number,
-  noItemsMsg: React.PropTypes.string,
-  deleteItem: React.PropTypes.bool,
-  handleDeleteItem: React.PropTypes.func
+  itemBlockSize: React.PropTypes.number,
+  deleteItem: React.PropTypes.bool
 }
 
 ListContainer.defaultProps = { 
