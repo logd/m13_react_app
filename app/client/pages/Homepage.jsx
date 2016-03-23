@@ -132,7 +132,8 @@ export default class Homepage extends React.Component {
         deleteItem={true}
         handleDeleteItem={this.handleDeleteNote}
         deleteMsg="Delete this note?"
-        noItemsMsg={noNotesMsg}
+        noItemsMsg={noNotesMsg} 
+        defaultItemsDisplayed={5}
        />
   }
 

@@ -12,8 +12,19 @@ export class List extends React.Component{
     autoBind(this)
   }
 
-  _noItems(items){
-    return items.length === 0
+  _itemCount(){
+    return this.props.items.length
+  } 
+
+  _noItems(){
+    return this._itemCount() === 0
+  } 
+
+  _showLoadMore(){
+    return this.state.itemsDisplayed < this._itemCount()?
+      <p>Load More...</p>
+    :
+      null
   } 
 
   noItemsMsg(msg = "There are no items."){
@@ -44,11 +55,12 @@ export class List extends React.Component{
     </ul>
   } 
     
-  render() {    
-    return this._noItems(this.props.items)?
+  render() { 
+
+    return this._noItems()?
       this.noItemsMsg(this.props.noItemsMsg)
     : 
-      this.listItems(this.props.items)
+      <div>{this.listItems(this.props.items)}{this._showLoadMore()}</div>
   }
 
 }
