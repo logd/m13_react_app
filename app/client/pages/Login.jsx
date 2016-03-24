@@ -24,8 +24,10 @@ export const Login = (props) => {
         null
     }
     ,
-    googleLoginLabel = "Sign in via Google"
-  
+    googleLoginLabel = "Sign in via Google",
+
+    routeName = FlowRouter.getRouteName();
+ 
 
   return <div className="app-container">
           <AppHeader />
@@ -34,7 +36,7 @@ export const Login = (props) => {
             <p><button onClick={loginWithGoogle} className="btn btn-google btn-with-icon"><i className="fa fa-google-plus"></i>{googleLoginLabel}</button>
             </p>
             {loginWithPassword()}
-            <AppFooter />
+            <AppFooter routeName={routeName} />
           </div>
         </div>
 }
