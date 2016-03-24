@@ -9,7 +9,7 @@ html,body {
 *, *:before, *:after { box-sizing: inherit; }
 
 body {
-  // overflow:hidden;
+  overflow:hidden;
   min-height: 100vh;
   padding:0;
   margin:0;
@@ -65,11 +65,11 @@ body {
   }
 }
 
-body.scrolling {
-   .app-header {
-    @include drop_shadow_bottom();
-  }
-}
+// body.scrolling {
+//    .app-header {
+//     @include drop_shadow_bottom();
+//   }
+// }
 
 // --------------------------------
 // MAIN CONTENT
@@ -77,9 +77,9 @@ body.scrolling {
 
 .main-content {
   flex: 1;
-  padding:$app-header-height $app-left-right-padding 0 $app-left-right-padding;
-  margin: 0;
-  // height:100%; 
+  padding: 0 $app-left-right-padding 0 $app-left-right-padding;
+  margin: $app-header-height 0 0 0;
+  height:100%; 
   display: flex;
   flex-direction: column;
   min-width: $app-min-width;
