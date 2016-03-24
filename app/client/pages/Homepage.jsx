@@ -128,7 +128,8 @@ export default class Homepage extends React.Component {
              {appHeader}
              <div className="main-content">
               <ListContainer />
-             </div> 
+             </div>
+             <AppFooter />
            </div>
       
   }

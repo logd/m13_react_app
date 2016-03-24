@@ -1,5 +1,6 @@
 import React from 'react'
 import {AppHeader} from '../layout/AppHeader.jsx'
+import {AppFooter} from '../layout/AppFooter.jsx'
 import {LoginWithPassword} from '../forms/LoginWithPassword.jsx'
 
 export const Login = (props) => {
@@ -33,6 +34,7 @@ export const Login = (props) => {
             <p><button onClick={loginWithGoogle} className="btn btn-google btn-with-icon"><i className="fa fa-google-plus"></i>{googleLoginLabel}</button>
             </p>
             {loginWithPassword()}
+            <AppFooter />
           </div>
         </div>
 }
