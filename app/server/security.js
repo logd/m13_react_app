@@ -21,7 +21,8 @@ const trusted = [
   '*.fbcdn.net',
   'secure.gravatar.com',
   'i0.wp.com',
-  '*.typekit.net'
+  '*.typekit.net',
+  'cloud.githubusercontent.com'
 ]
 
 _.each(trusted, (origin) => BrowserPolicy.content.allowOriginForAll(origin))
