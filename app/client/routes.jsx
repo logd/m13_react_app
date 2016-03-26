@@ -20,36 +20,77 @@ import {NotFound} from './pages/NotFound'
 // ------------------------
 // TRIGGERS/HOOKS
 // ------------------------
-// function redirectIfAnonymous(context, redirect) {
-//   // // context is the output of `FlowRouter.current()
-//   // AppLibRedirectPath = context.path
-//   // var notSignedIn = !Meteor.userId() && !Meteor.loggingIn()
-//   // if (notSignedIn) {
-//   //   console.log('entered notSignedIn')
-//   //   redirect('/login')
-//   //   // Alert.info("Please sign in to continue.", {effect: 'stackslide', position: 'top', timeout: 2500,})
-//   // }
+function redirectIfAnonymous(context, redirect) {
+  if(!Meteor.userId() || Meteor.loggingIn()){
+    console.log("context path: ", context.path)
+    Session.set("loginRedirect", true)
+    Session.set("requestedPage", context.path)
+    redirect('login')
+  }
+}
+
+// function alreadySignedInRedirect() {
+//   if(Session.get("alreadySignedInRedirect")){
+//     Alert.info("Please sign out before signing in/up", {effect: 'stackslide', position: 'top', timeout: 2500,})
+//     Session.set("alreadySignedInRedirect", false)
+//   }
 // }
 
-// function redirectIfSignedIn(context, redirect) {
-//   // if (Meteor.userId()) {
-//   //   if (AppLibRedirectPath != null) {
-//   //     redirect(AppLibRedirectPath);
-//   //   } else {
-//   //    redirect('home') 
-//   //   }
-//   // }
-// }
+function redirectIfSignedIn(context, redirect) {
+  if (Meteor.userId()) {
+    redirect('homepage')
+    // Alert.info("Please sign out before signing in/up", {effect: 'stackslide', position: 'top', timeout: 2500,})
+    // Session.set("alreadySignedInRedirect", true)
+  }
+}
+
+
+// ------------------------
+// Accounts
+// ------------------------
+
+FlowRouter.route('/login', {
+  name: 'login',
+  triggersEnter: [redirectIfSignedIn],
+  action() {
+    mount(MainLayout, {
+      content: () => <Login />
+    })
+  }
+})
+
+FlowRouter.route('/signup', {
+  name: 'signup',
+  triggersEnter: [redirectIfSignedIn],
+  action() {
+    mount(MainLayout, {
+      content: () => <Signup />
+    })
+  }
+})
+
+FlowRouter.route('/logout', {
+  name: 'logout',
+  action: function() {
+    Meteor.logout(function(){
+      FlowRouter.go('login')
+      Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
+      // FlowRouter.go('login');
+    })
+  }
+})
+
+
 
 // ------------------------
 // RESTRICTED Routes
 // ------------------------
-// const restrictedRoutes = FlowRouter.group({
-//   name: 'restricted',
-//   triggersEnter: [redirectIfAnonymous]
-// })
+const restrictedRoutes = FlowRouter.group({
+  name: 'restricted',
+  triggersEnter: [redirectIfAnonymous]
+})
 
-FlowRouter.route('/', {
+restrictedRoutes.route('/', {
   name: 'homepage',
   action() {
     mount(MainLayout, {
@@ -58,106 +99,36 @@ FlowRouter.route('/', {
   }
 })
 
-
-FlowRouter.route('/about', {
-  name: 'about',
-  action() {
+restrictedRoutes.route('/notes/:_id', {
+  name: 'noteDetail',
+  action(params) {
     mount(MainLayout, {
-      content: () => <About />
+      content: () => <NoteDetail _id={params._id} />
     })
   }
 })
 
 
-
-// ------------------------
-// Login/Signup/Logout
-// ------------------------
-
-// FlowRouter.route('/login', {
-//   name: 'login',
-//   triggersEnter: [redirectIfSignedIn],
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <Login />
-//     })
-//   }
-// })
-
-// FlowRouter.route('/logout', {
-//   name: 'logout',
-//   action: function() {
-//     Meteor.logout(function(){
-//       FlowRouter.go('login')
-//       Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
-//     })
-//   }
-// })
-
-// FlowRouter.route('/signup', {
-//   name: 'signup',
-//    triggersEnter: [function (){
-//       if (Meteor.userId()) {
-//         FlowRouter.go('home');
-//         Alert.info("Please sign out before signing up.", {effect: 'stackslide', position: 'top', timeout: 2500,})
-//       }
-//     }
-//   ],
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <Signup />
-//     })
-//   }
-// })
-
-
-// ------------------------
-// RESTRICTED Routes
-// ------------------------
-// const restrictedRoutes = FlowRouter.group({
-//   name: 'restricted',
-//   triggersEnter: [redirectIfAnonymous]
-// })
-
-// restrictedRoutes.route('/', {
-//   name: 'homepage',
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <Homepage />
-//     })
-//   }
-// })
-
-// restrictedRoutes.route('/notes/:_id', {
-//   name: 'noteDetail',
-//   action(params) {
-//     mount(MainLayout, {
-//       content: () => <NoteDetail _id={params._id} />
-//     })
-//   }
-// })
-
-
 // ------------------------
 // Public Routes
 // ------------------------
-// FlowRouter.route('/about', {
-//   name: 'about',
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <AboutPage />
-//     })
-//   }
-// })
+FlowRouter.route('/about', {
+  name: 'about',
+  action() {
+    mount(MainLayout, {
+      content: () => <AboutPage />
+    })
+  }
+})
 
 // ------------------------
 // NOT FOUND / 404
 // ------------------------
 
-// FlowRouter.notFound = {
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <NotFound />
-//     });
-//   }
-// }
+FlowRouter.notFound = {
+  action() {
+    mount(MainLayout, {
+      content: () => <NotFound />
+    });
+  }
+}

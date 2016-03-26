@@ -13,8 +13,6 @@ export const LoginWithPassword = (props) => {
       if (error) {
         console.log("login error: " + error.reason)
         sAlert.error(error.reason, {effect: 'stackslide', position: 'top'})
-      } else {
-        FlowRouter.go('homepage')
       }
     })
   }
