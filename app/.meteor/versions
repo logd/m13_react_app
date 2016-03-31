@@ -50,6 +50,7 @@ jparker:crypto-core@0.1.0
 jparker:crypto-md5@0.1.1
 jparker:gravatar@0.4.1
 jquery@1.11.6
+juliancwirko:postcss@1.0.0
 kadira:flow-router@2.11.0
 launch-screen@1.0.8
 livedata@1.0.16
@@ -88,7 +89,6 @@ sha@1.0.5
 spacebars@1.0.9
 spacebars-compiler@1.0.9
 srp@1.0.6
-standard-minifier-css@1.0.4
 standard-minifier-js@1.0.4
 templating@1.1.7
 templating-tools@1.0.2
