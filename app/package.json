@@ -11,24 +11,23 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^6.3.5",
-    "lost": "^6.7.2",
     "classnames": "^2.2.3",
+    "lost": "^6.7.2",
     "mocha": "^2.4.5",
     "postcss-easy-import": "^1.0.1",
     "postcss-nested": "^1.0.0",
     "postcss-safe-parser": "^1.0.7",
-    "postcss-simple-vars": "^1.2.0",
     "postcss-sassy-mixins": "^2.0.0",
     "postcss-scss": "^0.1.7",
-    "react": "^0.14.7",
-    "react-addons-pure-render-mixin": "^0.14.8",
+    "postcss-simple-vars": "^1.2.0",
+    "react": "^15.0.1",
+    "react-addons-pure-render-mixin": "^15.0.1",
     "react-autobind": "^1.0.6",
-    "react-dom": "^0.14.7",
-    "react-komposer": "^1.4.1",
-    "react-markdown": "^2.1.0",
-    "react-mixin": "^3.0.3",
-    "react-mounter": "^1.1.0",
-    "react-s-alert": "^1.0.3",
+    "react-dom": "^15.0.1",
+    "react-markdown": "^2.1.1",
+    "react-mixin": "^3.0.4",
+    "react-mounter": "^1.2.0",
+    "react-s-alert": "^1.1.1",
     "rucksack-css": "^0.8.5"
   },
   "postcss": {
@@ -52,5 +51,8 @@
       }
     },
     "parser": "postcss-safe-parser"
+  },
+  "devDependencies": {
+    "eslint-plugin-jsx-a11y": "^0.6.2"
   }
 }
