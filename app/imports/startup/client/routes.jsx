@@ -2,6 +2,7 @@ import React from 'react'
 import {mount} from 'react-mounter'
 import { MainLayout } from '/imports/components/layout/main_layout'
 import { Login } from '/imports/components/pages/login'
+import { Signup } from '/imports/components/pages/signup'
 
 
 // //COMPONENTS
@@ -11,8 +12,6 @@ import { Login } from '/imports/components/pages/login'
 // import {About} from './pages/About'
 // import Homepage from './pages/Homepage'
 // import NoteDetail from './pages/NoteDetail'
-// import {Login} from './pages/Login'
-// import {Signup} from './pages/Signup'
 // import {NotFound} from './pages/NotFound'
 
 
@@ -43,13 +42,8 @@ function redirectIfAnonymous(context, redirect) {
 //   }
 // }
 
-// const TmpLayout = ({page}) =>  <div>{page()}</div>
 
 const Homepage = () =>  <div>Homepage</div>
-
-// TmpLayout.propTypes = {
-//   content: React.PropTypes.func.isRequired
-// }
 
 
 
@@ -67,26 +61,26 @@ FlowRouter.route('/login', {
   }
 })
 
-// FlowRouter.route('/signup', {
-//   name: 'signup',
-//   triggersEnter: [redirectIfSignedIn],
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <Signup />
-//     })
-//   }
-// })
+FlowRouter.route('/signup', {
+  name: 'signup',
+  // triggersEnter: [redirectIfSignedIn],
+  action() {
+    mount(MainLayout, {
+      page: () => <Signup />
+    })
+  }
+})
 
-// FlowRouter.route('/logout', {
-//   name: 'logout',
-//   action: function() {
-//     Meteor.logout(function(){
-//       FlowRouter.go('login')
-//       // Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
-//       // FlowRouter.go('login');
-//     })
-//   }
-// })
+FlowRouter.route('/logout', {
+  name: 'logout',
+  action: function() {
+    Meteor.logout(function(){
+      FlowRouter.go('login')
+      // Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
+      // FlowRouter.go('login');
+    })
+  }
+})
 
 
 

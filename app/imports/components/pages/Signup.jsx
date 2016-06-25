@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const Signup = (props) => {
+export const Signup = props => {
 
-	const createAccount = (e) => {
+	const createAccount = e => {
 	  e.preventDefault()
 	  
 	  Accounts.createUser({

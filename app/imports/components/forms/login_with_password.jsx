@@ -12,7 +12,7 @@ export const LoginWithPassword = props => {
     Meteor.loginWithPassword(email, password, (error) => {
       if (error) {
         console.log("login error: " + error.reason)
-        sAlert.error(error.reason, {effect: 'stackslide', position: 'top'})
+        //sAlert.error(error.reason, {effect: 'stackslide', position: 'top'})
       }
     })
   }
