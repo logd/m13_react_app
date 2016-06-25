@@ -29,6 +29,6 @@ idorecall:email-normalize
 browser-policy
 ongoworks:security
 fortawesome:fontawesome
-fourseven:scss
-juliancwirko:postcss
 kit:basic-auth
+seba:minifiers-autoprefixer
+fourseven:scss

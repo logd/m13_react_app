@@ -47,18 +47,18 @@ if (process.env.NODE_ENV === 'development') {
 // DB Policies
 // Uses https://github.com/ongoworks/meteor-security/
 // --------------------------------------------------------------
-import {Notes} from '../both/Notes'
+// import {Notes} from '../both/Notes'
 
-Security.defineMethod("ifIsOwner", {
-  fetch: [],
-  transform: null,
-  deny: function (type, arg, userId, doc) {
-    return userId !== doc.ownerId;
-  }
-})
+// Security.defineMethod("ifIsOwner", {
+//   fetch: [],
+//   transform: null,
+//   deny: function (type, arg, userId, doc) {
+//     return userId !== doc.ownerId;
+//   }
+// })
 
-//Must be signed in to create a note 
-Notes.permit('insert').ifLoggedIn().apply()
+// //Must be signed in to create a note 
+// Notes.permit('insert').ifLoggedIn().apply()
 
-//Must be the owner to update or remove a note 
-Notes.permit(['update', 'remove']).ifIsOwner().apply()
+// //Must be the owner to update or remove a note 
+// Notes.permit(['update', 'remove']).ifIsOwner().apply()
