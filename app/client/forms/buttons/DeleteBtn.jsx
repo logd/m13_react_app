@@ -4,7 +4,12 @@ import {IconBtn} from './IconBtn'
 export const DeleteBtn = (props) => {
 
  const handleDelete = () => {
-		props.handleDelete(props.item);
+ 	  const confirmDelete = confirm("Really delete this note?")
+
+ 	  if (confirmDelete) {
+ 	  	props.handleDelete(props.item)
+ 	  }
+	
  }
 
  return <IconBtn handleClick={handleDelete} title={props.deleteMsg} icon="delete" size={props.size} />
