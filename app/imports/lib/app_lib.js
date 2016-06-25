@@ -1,4 +1,4 @@
-AppLib = {}
+export const AppLib = {}
 
 AppLib.appInfo = {
   title: "Logd"

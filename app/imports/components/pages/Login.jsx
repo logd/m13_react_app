@@ -1,9 +1,9 @@
 import React from 'react'
-import {AppHeader} from '../layout/AppHeader.jsx'
-import {AppFooter} from '../layout/AppFooter.jsx'
-import {LoginWithPassword} from '../forms/LoginWithPassword.jsx'
+import { AppHeader } from '../layout/app_header'
+import { AppFooter } from '../layout/app_footer'
+import { LoginWithPassword } from '../forms/login_with_password'
 
-export const Login = (props) => {
+export const Login = props => {
 
   const
 

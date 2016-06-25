@@ -1,9 +1,8 @@
-// // GLOBAL
 import React from 'react'
 import {mount} from 'react-mounter'
+import { MainLayout } from '/imports/components/layout/main_layout'
+import { Login } from '/imports/components/pages/login'
 
-// //LAYOUTS
-// import {MainLayout} from './layout/MainLayout'
 
 // //COMPONENTS
 // // import Alert from 'react-s-alert'
@@ -20,14 +19,14 @@ import {mount} from 'react-mounter'
 // ------------------------
 // TRIGGERS/HOOKS
 // ------------------------
-// function redirectIfAnonymous(context, redirect) {
-//   if(!Meteor.userId() || Meteor.loggingIn()){
-//     console.log("context path: ", context.path)
-//     Session.set("loginRedirect", true)
-//     Session.set("requestedPage", context.path)
-//     redirect('login')
-//   }
-// }
+function redirectIfAnonymous(context, redirect) {
+  if(!Meteor.userId() || Meteor.loggingIn()){
+    console.log("context path: ", context.path)
+    Session.set("loginRedirect", true)
+    Session.set("requestedPage", context.path)
+    redirect('login')
+  }
+}
 
 // function alreadySignedInRedirect() {
 //   if(Session.get("alreadySignedInRedirect")){
@@ -44,7 +43,7 @@ import {mount} from 'react-mounter'
 //   }
 // }
 
-const TmpLayout = ({page}) =>  <div>{page()}</div>
+// const TmpLayout = ({page}) =>  <div>{page()}</div>
 
 const Homepage = () =>  <div>Homepage</div>
 
@@ -58,15 +57,15 @@ const Homepage = () =>  <div>Homepage</div>
 // Accounts
 // ------------------------
 
-// FlowRouter.route('/login', {
-//   name: 'login',
-//   triggersEnter: [redirectIfSignedIn],
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <Login />
-//     })
-//   }
-// })
+FlowRouter.route('/login', {
+  name: 'login',
+  // triggersEnter: [redirectIfSignedIn],
+  action() {
+    mount(MainLayout, {
+      page: () => <Login />
+    })
+  }
+})
 
 // FlowRouter.route('/signup', {
 //   name: 'signup',
@@ -94,28 +93,28 @@ const Homepage = () =>  <div>Homepage</div>
 // ------------------------
 // RESTRICTED Routes
 // ------------------------
-// const restrictedRoutes = FlowRouter.group({
-//   name: 'restricted',
-//   triggersEnter: [redirectIfAnonymous]
-// })
+const restrictedRoutes = FlowRouter.group({
+  name: 'restricted',
+  triggersEnter: [redirectIfAnonymous]
+})
 
-// restrictedRoutes.route('/', {
-//   name: 'homepage',
-//   action() {
-//     mount(MainLayout, {
-//       content: () => <Homepage />
-//     })
-//   }
-// })
-
-FlowRouter.route('/', {
-  name: 'logout',
-  action(){
-    mount(TmpLayout, {
-      page: () => <Homepage />
+restrictedRoutes.route('/', {
+  name: 'homepage',
+  action() {
+    mount(MainLayout, {
+      content: () => <Homepage />
     })
   }
 })
+
+// FlowRouter.route('/', {
+//   name: 'logout',
+//   action(){
+//     mount(MainLayout, {
+//       page: () => <Homepage />
+//     })
+//   }
+// })
 
 
 // restrictedRoutes.route('/notes/:_id', {

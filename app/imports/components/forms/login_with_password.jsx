@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const LoginWithPassword = (props) => {
+export const LoginWithPassword = props => {
 
-  const loginWithPassword = (e) => {
+  const loginWithPassword = e => {
     e.preventDefault()
     
     const
