@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "Just notes",
   "scripts": {
-    "dev": "meteor --settings private/dev_settings.json",
-    "deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy www.logd.co --settings private/galaxy_deploy.json"
+    "dev": "meteor --settings private/dev_settings.json"
   },
   "keywords": [],
   "author": "Anders Ramsay",
