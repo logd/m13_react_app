@@ -28,7 +28,7 @@ function redirectIfAnonymous(context, redirect) {
 
 function redirectIfSignedIn(context, redirect) {
   if (Meteor.userId()) {
-    console.log("already signed in")
+    //console.log("already signed in")
     redirect('homepage') 
   }
 }

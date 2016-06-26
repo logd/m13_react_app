@@ -1,8 +1,7 @@
 import { Accounts } from 'meteor/accounts-base'
 
 Accounts.onLogin(function(){
-	console.log("entered onLogin")
-
+	// console.log("entered onLogin")
  if (Meteor.isClient) {
 		const
 		  route = FlowRouter.current().route.name,
