@@ -1,20 +1,15 @@
-// GLOBAL
 import React from 'react'
-import {mount} from 'react-mounter'
-
-//LAYOUTS
-import {MainLayout} from './layout/MainLayout'
+import { mount } from 'react-mounter'
 
 //COMPONENTS
+import { MainLayout } from '/imports/ui/layouts/main_layout'
 import Alert from 'react-s-alert'
-
-//PAGES
-import {About} from './pages/About'
-import Homepage from './pages/Homepage'
-import NoteDetail from './pages/NoteDetail'
-import {Login} from './pages/Login'
-import {Signup} from './pages/Signup'
-import {NotFound} from './pages/NotFound'
+import { About } from '/imports/ui/pages/about'
+import Homepage from '/imports/ui/pages/Homepage'
+import NoteDetail from '/imports/ui/pages/NoteDetail'
+import { Login } from '/imports/ui/pages/Login'
+import {Signup} from '/imports/ui/pages/Signup'
+import {NotFound} from '/imports/ui/pages/NotFound'
 
 
 // ------------------------

@@ -8,7 +8,7 @@ import autoBind from 'react-autobind'
 import { Note } from '/imports/collections/notes'
 
 //COMPONENTS
-import {AppHeader} from '../layout/AppHeader'
+import {AppHeader} from '../layouts/app_header'
 import {IconBtn} from '../forms/buttons/IconBtn'
 import {PageTitle} from '../content/PageTitle'
 import {OptionsMenu} from '../menus/OptionsMenu'

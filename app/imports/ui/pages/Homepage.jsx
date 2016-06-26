@@ -4,14 +4,14 @@ import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 
 //COMPONENTS
-import {AppHeader} from '../layout/AppHeader.jsx'
-import {AppFooter} from '../layout/AppFooter.jsx'
-import {PageTitle} from '../content/PageTitle.jsx'
-import {OptionsMenu} from '../menus/OptionsMenu.jsx'
-import {IconBtn} from '../forms/buttons/IconBtn.jsx'
-import {Loading} from '../utility/Loading.jsx'
-import {SingleFieldSubmit} from '../forms/SingleFieldSubmit.jsx'
-import {ListContainer} from '../lists/ListContainer.jsx'
+import { AppHeader }         from '/imports/ui/layouts/app_header'
+import { AppFooter }         from '/imports/ui/layouts/app_footer'
+import { PageTitle }         from '/imports/ui/content/PageTitle'
+import { OptionsMenu }       from '/imports/ui/menus/OptionsMenu'
+import { IconBtn }           from '/imports/ui/forms/buttons/IconBtn'
+import { Loading }           from '/imports/ui/utility/Loading'
+import { SingleFieldSubmit } from '/imports/ui/forms/SingleFieldSubmit'
+import { ListContainer }     from '/imports/ui/lists/ListContainer'
 
 export default class Homepage extends React.Component {
   constructor(props){

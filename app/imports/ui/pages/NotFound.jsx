@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppHeader} from '../layout/AppHeader'
+import {AppHeader} from '../layouts/app_header'
 import {PageTitle} from '../content/PageTitle'
 
 
