@@ -1,21 +1,21 @@
- @import "{}/imports/ui/stylesheets/theme/variables";
+ @import "theme/variables";
 
 // CORE
-@import "{}/imports/ui/stylesheets/core/normalize";
-@import "{}/imports/ui/stylesheets/core/mixins";
-@import "{}/imports/ui/stylesheets/core/helpers";
+@import "core/normalize";
+@import "core/mixins";
+@import "core/helpers";
 
 // THEME
-@import "{}/imports/ui/stylesheets/theme/mixins";
-@import "{}/imports/ui/stylesheets/theme/layout";
-@import "{}/imports/ui/stylesheets/theme/buttons";
-@import "{}/imports/ui/stylesheets/theme/lists";
-@import "{}/imports/ui/stylesheets/theme/forms";
-@import "{}/imports/ui/stylesheets/theme/text";
-@import "{}/imports/ui/stylesheets/theme/colors";
+@import "theme/mixins";
+@import "theme/layout";
+@import "theme/buttons";
+@import "theme/lists";
+@import "theme/forms";
+@import "theme/text";
+@import "theme/colors";
 
 // COMPONENTS
-@import "{}/imports/ui/stylesheets/components/options_menu";
+@import "components/options_menu";
 
 // MISC
 .gray-pill {
