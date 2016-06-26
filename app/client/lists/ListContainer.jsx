@@ -1,10 +1,10 @@
 import React from 'react'
 import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
-import {Notes} from '../../both/Notes'
-import {List} from './List.jsx'
-import {TextBtn} from '../forms/buttons/TextBtn.jsx'
-import {Loading} from '../utility/Loading.jsx'
+import { Note } from '../../both/Notes'
+import { List } from './List.jsx'
+import { TextBtn} from '../forms/buttons/TextBtn.jsx'
+import { Loading } from '../utility/Loading.jsx'
 
 export class ListContainer extends React.Component{
 
@@ -29,7 +29,7 @@ export class ListContainer extends React.Component{
     return {
       subscription:  subscription,
       totalCount:    notesCount,
-      collection:    Notes.find({}, {sort: { updatedAt: -1 }}).fetch()
+      collection:    Note.find({}, {sort: { updatedAt: -1 }}).fetch()
     }
   }
 

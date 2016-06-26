@@ -1,9 +1,9 @@
 import {Mongo} from 'meteor/mongo'
-import {Astro} from 'meteor/jagi:astronomy'
+import { Astro } from 'meteor/jagi:astronomy'
 
 export const Notes = new Mongo.Collection('notes')
 
-export const AstroNote = Astro.Class({
+export const Note = Astro.Class({
 	name: 'Note',
 	collection: Notes,
 	fields: {
@@ -45,7 +45,7 @@ export const AstroNote = Astro.Class({
 Meteor.methods({
 
 	'/note/create': (title) => { 
-		const note = new AstroNote()
+		const note = new Note()
     note.set({
       title: title,
       ownerId: Meteor.userId(),

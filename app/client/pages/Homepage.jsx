@@ -4,7 +4,7 @@ import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 
 //DATA
-import {AstroNote as Note} from '../../both/Notes'
+// import { Note } from '../../both/Notes'
 
 //COMPONENTS
 import {AppHeader} from '../layout/AppHeader.jsx'

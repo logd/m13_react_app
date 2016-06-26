@@ -17,8 +17,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 standard-minifier-js
 kadira:flow-router
-jagi:astronomy
-jagi:astronomy-validators
 react-meteor-data
 accounts-google
 accounts-password
@@ -32,3 +30,5 @@ fortawesome:fontawesome
 fourseven:scss
 juliancwirko:postcss
 kit:basic-auth
+jagi:astronomy
+jagi:astronomy-validators

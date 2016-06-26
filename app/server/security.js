@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'development') {
 // DB Policies
 // Uses https://github.com/ongoworks/meteor-security/
 // --------------------------------------------------------------
-import {Notes} from '../both/Notes'
+import { Notes } from '../both/Notes'
 
 Security.defineMethod("ifIsOwner", {
   fetch: [],
