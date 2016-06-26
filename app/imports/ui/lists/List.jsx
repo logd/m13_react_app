@@ -1,5 +1,5 @@
 import React from 'react'
-import {DeleteBtn} from '../forms/buttons/DeleteBtn.jsx'
+import {DeleteBtn} from '/imports/ui/forms/buttons/delete_btn'
 
 export const List = (props) => {
 

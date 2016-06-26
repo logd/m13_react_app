@@ -1,19 +1,16 @@
-//GLOBAL
 import React from 'react'
 import reactMixin from 'react-mixin'
 import ReactMarkdown from 'react-markdown'
 import autoBind from 'react-autobind'
-
-// //DATA
 import { Note } from '/imports/collections/notes'
 
 //COMPONENTS
-import {AppHeader} from '../layouts/app_header'
-import {IconBtn} from '../forms/buttons/IconBtn'
-import {PageTitle} from '../content/PageTitle'
-import {OptionsMenu} from '../menus/OptionsMenu'
-import {EditableText} from '../content/EditableText'
-import {Loading} from '../utility/Loading'
+import { AppHeader }       from '/imports/ui/layouts/app_header'
+import { IconBtn }         from '/imports/ui/forms/buttons/icon_btn'
+import { PageTitle }       from '/imports/ui/content/page_title'
+import { OptionsMenu }     from '/imports/ui/menus/options_menu'
+import { EditableText }    from '/imports/ui/content/editable_text'
+import { Loading }         from '/imports/ui/utility/loading'
 
 
 export default class NoteDetail extends React.Component {

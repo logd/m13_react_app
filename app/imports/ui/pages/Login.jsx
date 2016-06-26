@@ -1,7 +1,7 @@
 import React from 'react'
-import {AppHeader} from '/imports/ui/layouts/app_header'
-import {AppFooter} from '/imports/ui/layouts/app_footer'
-import {LoginWithPassword} from '/imports/ui/forms/LoginWithPassword'
+import { AppHeader }          from '/imports/ui/layouts/app_header'
+import { AppFooter }          from '/imports/ui/layouts/app_footer'
+import { LoginWithPassword }  from '/imports/ui/forms/login_with_password'
 
 export const Login = (props) => {
 

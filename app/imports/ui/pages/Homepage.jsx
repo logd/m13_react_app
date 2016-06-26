@@ -6,12 +6,12 @@ import reactMixin from 'react-mixin'
 //COMPONENTS
 import { AppHeader }         from '/imports/ui/layouts/app_header'
 import { AppFooter }         from '/imports/ui/layouts/app_footer'
-import { PageTitle }         from '/imports/ui/content/PageTitle'
-import { OptionsMenu }       from '/imports/ui/menus/OptionsMenu'
-import { IconBtn }           from '/imports/ui/forms/buttons/IconBtn'
-import { Loading }           from '/imports/ui/utility/Loading'
-import { SingleFieldSubmit } from '/imports/ui/forms/SingleFieldSubmit'
-import { ListContainer }     from '/imports/ui/lists/ListContainer'
+import { PageTitle }         from '/imports/ui/content/page_title'
+import { OptionsMenu }       from '/imports/ui/menus/options_menu'
+import { IconBtn }           from '/imports/ui/forms/buttons/icon_btn'
+import { Loading }           from '/imports/ui/utility/loading'
+import { SingleFieldSubmit } from '/imports/ui/forms/single_field_submit'
+import { ListContainer }     from '/imports/ui/lists/list_container'
 
 export default class Homepage extends React.Component {
   constructor(props){

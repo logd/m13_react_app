@@ -1,8 +1,8 @@
 import React from 'react'
-import {AppHeader} from '../layouts/app_header.jsx'
-import {PageTitle} from '../content/PageTitle.jsx'
-import {AppFooter} from '../layouts/app_footer.jsx'
-import {IconBtn} from '../forms/buttons/IconBtn.jsx'
+import { AppHeader }   from '/imports/ui/layouts/app_header'
+import { PageTitle }   from '/imports/ui/content/page_title'
+import { AppFooter }   from '/imports/ui/layouts/app_footer'
+import { IconBtn }     from '/imports/ui/forms/buttons/icon_btn'
 
 export const About = () => {
 

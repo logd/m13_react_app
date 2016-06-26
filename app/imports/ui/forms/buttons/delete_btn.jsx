@@ -1,5 +1,5 @@
 import React from 'react'
-import {IconBtn} from './IconBtn'
+import {IconBtn} from './icon_btn'
 
 export const DeleteBtn = (props) => {
 

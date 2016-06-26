@@ -6,11 +6,11 @@ import '/imports/accounts/on_login'
 import { MainLayout } from '/imports/ui/layouts/main_layout'
 import Alert from 'react-s-alert'
 import { About } from '/imports/ui/pages/about'
-import Homepage from '/imports/ui/pages/Homepage'
-import NoteDetail from '/imports/ui/pages/NoteDetail'
-import { Login } from '/imports/ui/pages/Login'
-import {Signup} from '/imports/ui/pages/Signup'
-import {NotFound} from '/imports/ui/pages/NotFound'
+import Homepage from '/imports/ui/pages/homepage'
+import NoteDetail from '/imports/ui/pages/note_detail'
+import { Login } from '/imports/ui/pages/login'
+import {Signup} from '/imports/ui/pages/signup'
+import {NotFound} from '/imports/ui/pages/not_found'
 
 
 // ------------------------

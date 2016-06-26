@@ -1,6 +1,6 @@
 import React from 'react'
-import {AppHeader} from '../layouts/app_header'
-import {PageTitle} from '../content/PageTitle'
+import { AppHeader } from '/imports/ui/layouts/app_header'
+import { PageTitle } from '/imports/ui/content/page_title'
 
 
 export const NotFound = () =>{

@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageTitle } from '../content/PageTitle.jsx'
+import { PageTitle } from '/imports/ui/content/page_title'
 
 export const AppHeader = (props) => 
 	<header className="app-header">

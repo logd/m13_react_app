@@ -1,6 +1,6 @@
 import React from 'react'
 import autoBind from 'react-autobind'
-import {TextBtn} from './buttons/TextBtn.jsx'
+import {TextBtn} from './buttons/text_btn'
 
 export default class TextFieldAutoSave extends React.Component {
 

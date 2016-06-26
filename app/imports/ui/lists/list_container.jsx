@@ -2,9 +2,9 @@ import React from 'react'
 import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 import { Note } from '/imports/collections/notes'
-import { List } from './List.jsx'
-import { TextBtn} from '../forms/buttons/TextBtn.jsx'
-import { Loading } from '../utility/Loading.jsx'
+import { List } from './list'
+import { TextBtn} from '/imports/ui/forms/buttons/text_btn'
+import { Loading } from '/imports/ui/utility/loading'
 
 export class ListContainer extends React.Component{
 

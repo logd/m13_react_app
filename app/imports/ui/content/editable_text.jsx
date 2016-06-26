@@ -1,6 +1,6 @@
 import React from 'react'
 import autoBind from 'react-autobind'
-import TextFieldAutoSave from '../forms/TextFieldAutoSave.jsx'
+import TextFieldAutoSave from '/imports/ui/forms/textfield_autosave'
 
 export class EditableText extends React.Component {
 
