@@ -4,8 +4,8 @@ import reactMixin from 'react-mixin'
 import ReactMarkdown from 'react-markdown'
 import autoBind from 'react-autobind'
 
-//DATA
-import {Notes} from '../../both/Notes'
+// //DATA
+import { Note } from '/imports/collections/notes'
 
 //COMPONENTS
 import {AppHeader} from '../layout/AppHeader'
@@ -31,7 +31,7 @@ export default class NoteDetail extends React.Component {
       userData = Meteor.subscribe("userData"),
       subscription = Meteor.subscribe('myCurrentNote', noteId),
       subsReady = subscription.ready(),
-      note = subscription.ready()? Notes.findOne({ _id: noteId }) : null
+      note = subscription.ready()? Note.findOne({ _id: noteId }) : null
 
     if (userData.ready()) {
       currentUser = Meteor.user()

@@ -1,3 +1,5 @@
+import { Notes } from '/imports/collections/notes'
+
 // --------------------------------------------------------------
 // Deny all client-side updates to user documents
 // http://guide.meteor.com/accounts.html#dont-use-profile
@@ -47,8 +49,6 @@ if (process.env.NODE_ENV === 'development') {
 // DB Policies
 // Uses https://github.com/ongoworks/meteor-security/
 // --------------------------------------------------------------
-import { Notes } from '../both/Notes'
-
 Security.defineMethod("ifIsOwner", {
   fetch: [],
   transform: null,

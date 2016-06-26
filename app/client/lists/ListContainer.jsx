@@ -1,7 +1,7 @@
 import React from 'react'
 import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
-import { Note } from '../../both/Notes'
+import { Note } from '/imports/collections/notes'
 import { List } from './List.jsx'
 import { TextBtn} from '../forms/buttons/TextBtn.jsx'
 import { Loading } from '../utility/Loading.jsx'

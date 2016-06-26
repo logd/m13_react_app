@@ -3,9 +3,6 @@ import React from 'react'
 import autoBind from 'react-autobind'
 import reactMixin from 'react-mixin'
 
-//DATA
-// import { Note } from '../../both/Notes'
-
 //COMPONENTS
 import {AppHeader} from '../layout/AppHeader.jsx'
 import {AppFooter} from '../layout/AppFooter.jsx'

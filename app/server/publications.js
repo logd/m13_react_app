@@ -1,4 +1,4 @@
-import { Note } from '../both/Notes'
+import { Note } from '/imports/collections/notes'
 
 const
   myNotesFields = {
