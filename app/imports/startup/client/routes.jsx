@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'react-mounter'
+import '/imports/accounts/on_login'
 
 //COMPONENTS
 import { MainLayout } from '/imports/ui/layouts/main_layout'
@@ -17,25 +18,18 @@ import {NotFound} from '/imports/ui/pages/NotFound'
 // ------------------------
 function redirectIfAnonymous(context, redirect) {
   if(!Meteor.userId() || Meteor.loggingIn()){
-    console.log("context path: ", context.path)
-    Session.set("loginRedirect", true)
+    // console.log("context path: ", context.path)
     Session.set("requestedPage", context.path)
+    Session.set("loginRedirect", true)
+    // Session.set("requestedPage", context.path)
     redirect('login')
   }
 }
 
-// function alreadySignedInRedirect() {
-//   if(Session.get("alreadySignedInRedirect")){
-//     Alert.info("Please sign out before signing in/up", {effect: 'stackslide', position: 'top', timeout: 2500,})
-//     Session.set("alreadySignedInRedirect", false)
-//   }
-// }
-
 function redirectIfSignedIn(context, redirect) {
   if (Meteor.userId()) {
-    redirect('homepage')
-    // Alert.info("Please sign out before signing in/up", {effect: 'stackslide', position: 'top', timeout: 2500,})
-    // Session.set("alreadySignedInRedirect", true)
+    console.log("already signed in")
+    redirect('homepage') 
   }
 }
 
@@ -69,7 +63,7 @@ FlowRouter.route('/logout', {
   action: function() {
     Meteor.logout(function(){
       FlowRouter.go('login')
-      Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
+      // Alert.info("You've been signed out.", {effect: 'stackslide', position: 'top', timeout: 2000,})
       // FlowRouter.go('login');
     })
   }

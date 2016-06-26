@@ -16,10 +16,7 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 standard-minifier-js
-kadira:flow-router
 react-meteor-data
-accounts-google
-accounts-password
 service-configuration
 tmeasday:publish-counts
 jparker:gravatar
@@ -32,3 +29,6 @@ juliancwirko:postcss
 kit:basic-auth
 jagi:astronomy
 jagi:astronomy-validators
+accounts-password
+accounts-google
+kadira:flow-router
